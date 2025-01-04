@@ -7,7 +7,11 @@ from concurrent.futures import ThreadPoolExecutor
 def load_api_key(model_name):
     with open('config.yaml', 'r') as file:
         config = yaml.safe_load(file)
-    return config.get(f'{model_name}-api-key')
+    if model_name == "gpt-4o":
+        return config.get('openai-api-key')
+    elif model_name == "sonnet":
+        return config.get('anthropic-api-key')
+    return None
 
 # Example usage
 if __name__ == "__main__":
