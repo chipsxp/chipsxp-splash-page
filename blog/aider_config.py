@@ -14,7 +14,7 @@ if __name__ == "__main__":
     print(f"Loaded API Key: {api_key}")
     
     # List of models to run
-    models = ["gpt-4o", "claude"]
+    models = ["gpt-4o", "sonnet"]
 
     # Run Aider with the API key for each model
     if api_key:
