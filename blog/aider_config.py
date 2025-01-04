@@ -13,8 +13,12 @@ if __name__ == "__main__":
     api_key = load_api_key()
     print(f"Loaded API Key: {api_key}")
     
-    # Run Aider with the API key as a command-line argument
+    # List of models to run
+    models = ["gpt-4o", "claude"]
+
+    # Run Aider with the API key for each model
     if api_key:
-        subprocess.run(["aider", "--openai-api-key", api_key, "--model", "gpt-4o", "--browser"])
+        for model in models:
+            subprocess.run(["aider", "--openai-api-key", api_key, "--model", model, "--browser"])
     else:
         print("API key is missing or not properly formatted in config.yaml")
