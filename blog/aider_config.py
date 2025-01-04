@@ -22,7 +22,10 @@ if __name__ == "__main__":
             print(f"Loaded API Key for {model}: {api_key}")
 
             if api_key:
-                futures.append(executor.submit(subprocess.run, ["aider", "--openai-api-key", api_key, "--model", model, "--browser"]))
+                if model == "gpt-4o":
+                    futures.append(executor.submit(subprocess.run, ["aider", "--openai-api-key", api_key, "--model", model, "--browser"]))
+                elif model == "sonnet":
+                    futures.append(executor.submit(subprocess.run, ["aider", "--anthropic-api-key", api_key, "--model", model, "--browser"]))
 
         for future in futures:
             future.result()
