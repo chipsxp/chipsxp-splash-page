@@ -19,7 +19,7 @@ pnpm-debug.log*
 .env.local
 config.yaml
 .aider*.*
-aider_*.py
+
 
 # macOS-specific files
 .DS_Store
