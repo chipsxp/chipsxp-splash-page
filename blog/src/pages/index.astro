@@ -2,26 +2,26 @@
 import BaseHead from '../components/BaseHead.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
+import Sidebar from '../components/Sidebar.astro';
 import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
-import { getCollection } from 'astro:content';
+import { getCollection, type CollectionEntry } from 'astro:content';
 import { Image } from 'astro:assets';
 import FormattedDate from '../components/FormattedDate.astro';
 
-const posts = (await getCollection('blog')).sort(
-	(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
-);
+const posts = await getCollection('research');
+const sortedPosts = posts.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
 
-// Import images using the recommended pattern
-const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/images/*.{jpeg,jpg,png,gif,webp}');
+const images = import.meta.glob<{ default: any }>('../assets/images/*');
+const processedImages: Record<string, any> = {};
 
-// Process images before template rendering
-const processedPosts = await Promise.all(
-	posts.map(async (post) => {
-		const imagePath = post.data.heroImage ? `/src/assets/images/${post.data.heroImage}` : null;
-		const imageImport = imagePath && images[imagePath] ? await images[imagePath]() : null;
-		return { ...post, imageImport };
-	})
-);
+for (const post of sortedPosts) {
+	if (post.data.heroImage) {
+		const imagePath = `../assets/images/${post.data.heroImage}`;
+		if (images[imagePath]) {
+			processedImages[post.data.heroImage] = (await images[imagePath]()).default;
+		}
+	}
+}
 ---
 
 <!doctype html>
@@ -29,8 +29,22 @@ const processedPosts = await Promise.all(
 	<head>
 		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
 		<style>
+			.layout-container {
+				display: flex;
+				min-height: 100vh;
+				padding-top: 64px;
+			}
 			main {
-				width: 960px;
+				flex: 1;
+				margin-left: 320px;
+				padding: 3em 2em;
+				width: 100%;
+			}
+			section {
+				max-width: 1200px;
+				width: 100%;
+				margin: 0 auto;
+				padding: 0 1rem 0 2rem;
 			}
 			ul {
 				display: flex;
@@ -61,6 +75,9 @@ const processedPosts = await Promise.all(
 			ul li img {
 				margin-bottom: 0.5rem;
 				border-radius: 12px;
+				width: 100%;
+				height: auto;
+				object-fit: cover;
 			}
 			ul li a {
 				display: block;
@@ -82,12 +99,25 @@ const processedPosts = await Promise.all(
 				box-shadow: var(--box-shadow);
 			}
 			@media (max-width: 720px) {
+				main {
+					margin-left: 0;
+					padding: 2em 0.5em 2em 2.5em;
+				}
+				section {
+					padding: 0 1rem 0 3rem;
+					max-width: calc(100% + 4rem);
+					width: calc(100% + 4rem);
+					margin-left: -2rem;
+				}
 				ul {
-					gap: 0.5em;
+					gap: 1.5em;
 				}
 				ul li {
 					width: 100%;
 					text-align: center;
+				}
+				ul li img {
+					width: 100%;
 				}
 				ul li:first-child {
 					margin-bottom: 0;
@@ -96,25 +126,33 @@ const processedPosts = await Promise.all(
 					font-size: 1.563em;
 				}
 			}
+
+			@media (min-width: 721px) and (max-width: 1024px) {
+				main {
+					margin-left: 280px;
+				}
+			}
 		</style>
 	</head>
 	<body>
 		<Header />
-		<main>
+		<div class="layout-container">
+			<Sidebar />
+			<main>
 			<section>
+				<h2>Research Articles</h2>
 				<ul>
 					{
-						processedPosts.map((post) => (
+						sortedPosts.map((post) => (
 							<li>
-								<a href={`/blog/${post.id}/`}>
-									{post.imageImport && (
+								<a href={`/${post.id}/`}>
+									{post.data.heroImage && (
 										<Image
-											src={post.imageImport.default}
+											src={processedImages[post.data.heroImage]}
 											width={720}
 											height={360}
-											alt=""
-											format="webp"
-											quality={80}
+											alt={`Cover image for ${post.data.title}`}
+											class="aspect-[2/1] object-cover"
 										/>
 									)}
 									<h4 class="title">{post.data.title}</h4>
@@ -127,7 +165,8 @@ const processedPosts = await Promise.all(
 					}
 				</ul>
 			</section>
-		</main>
+			</main>
+		</div>
 		<Footer />
 	</body>
 </html>

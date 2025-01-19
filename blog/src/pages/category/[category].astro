@@ -1,0 +1,98 @@
+---
+import { getCollection } from 'astro:content';
+import type { CollectionEntry } from 'astro:content';
+import BaseHead from '../../components/BaseHead.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import Sidebar from '../../components/Sidebar.astro';
+import FormattedDate from '../../components/FormattedDate.astro';
+
+type Category = 'research' | 'development';
+
+export async function getStaticPaths() {
+    const researchPosts = await getCollection('research');
+    const advancePosts = await getCollection('advance');
+    const allPosts: CollectionEntry<'research' | 'advance'>[] = [...researchPosts, ...advancePosts];
+    const uniqueCategories = [...new Set(allPosts.map(post => post.data.category))] as Category[];
+    
+    return uniqueCategories.map(category => ({
+        params: { category: category.toLowerCase() },
+        props: { category, posts: allPosts.filter(post => post.data.category === category) },
+    }));
+}
+
+const { category, posts } = Astro.props;
+---
+
+<html lang="en">
+	<head>
+		<BaseHead title={`${category} Posts`} description={`All posts in category ${category}`} />
+		<style>
+			.layout-container {
+				display: flex;
+				min-height: 100vh;
+				padding-top: 64px;
+			}
+			main {
+				width: calc(100% - 150px);
+				max-width: 100%;
+				margin: 0 0 0 150px;
+				padding: 2em;
+			}
+			.title {
+				margin-bottom: 2em;
+			}
+			.posts-grid {
+				display: grid;
+				grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+				gap: 2rem;
+			}
+			.post-card {
+				border: 1px solid rgb(var(--gray-light));
+				border-radius: 8px;
+				padding: 1rem;
+				transition: transform 0.2s;
+			}
+			.post-card:hover {
+				transform: translateY(-3px);
+			}
+			.post-title {
+				margin: 0.5rem 0;
+				font-size: 1.5rem;
+			}
+			.post-date {
+				color: rgb(var(--gray));
+				font-size: 0.9rem;
+			}
+			a {
+				text-decoration: none;
+				color: inherit;
+			}
+		</style>
+	</head>
+	<body>
+		<Header />
+		<div class="layout-container">
+			<Sidebar />
+			<main>
+				<div class="title">
+					<h1>{category} Posts</h1>
+				</div>
+				<div class="posts-grid">
+					{posts.map(post => (
+						<a href={`/${post.collection}/${post.slug}`}>
+							<div class="post-card">
+								<div class="post-date">
+									<FormattedDate date={post.data.pubDate} />
+								</div>
+								<h2 class="post-title">{post.data.title}</h2>
+								<p>{post.data.description}</p>
+							</div>
+						</a>
+					))}
+				</div>
+			</main>
+		</div>
+		<Footer />
+	</body>
+</html>
