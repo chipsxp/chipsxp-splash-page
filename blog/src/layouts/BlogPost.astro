@@ -14,9 +14,14 @@ type Props = {
 	updatedDate?: Date;
 	heroImage?: string | ImageMetadata;
 	category?: string;
+	author?: {
+		name: string;
+		nickname?: string;
+		url?: string;
+	};
 };
 
-const { title, description, pubDate, updatedDate, heroImage, category } = Astro.props;
+const { title, description, pubDate, updatedDate, heroImage, category, author } = Astro.props;
 const categoryDisplay = category ? category.charAt(0).toUpperCase() + category.slice(1) : '';
 
 // Handle both string paths and direct image imports
@@ -39,29 +44,32 @@ const imageImport = await getImage();
 			.layout-container {
 				display: flex; 
 				min-height: 100vh;
-				padding-top: 64px; /* Match header height */
+				padding-top: 15px; /* Match header height */
 			}
 			
 			main {
-				width: calc(100% - 150px);
+				width: calc(100% - 160px);
 				max-width: 100%;
-				margin: 0 0 0 150px;
+				margin: 0 0 0 160px;
 				padding: 1em;
 			}
 			.hero-image {
-				width: 100%;
+				width: 83%;
+				margin: 0 8% 0 15%;
+				padding: 1em 0;
+				transform: translateX(20px);
 			}
 			.hero-image img {
 				display: block;
-				margin: 2em auto;
+				margin: 0 auto;
 				border-radius: 12px;
-				box-shadow: var(--box-shadow);
+				box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 				max-width: 100%;
 				height: auto;
 			}
 			.prose {
-				width: 720px;
-				max-width: calc(100% - 2em);
+				width: 58%;
+				max-width: calc(100% - 1em);
 				margin: auto;
 				padding: 1em;
 				color: rgb(var(--gray-dark));
@@ -70,7 +78,7 @@ const imageImport = await getImage();
 			@media (max-width: 768px) {
 				.layout-container {
 					flex-direction: column;
-					padding-top: 56px;
+					padding-top: 25px;
 				}
 				main {
 					width: 100%;
@@ -79,9 +87,10 @@ const imageImport = await getImage();
 				}
 				.hero-image {
 					padding: 0;
+					margin: 0 0 0 2rem;
 				}
 				.hero-image img {
-					margin: 1em auto;
+					margin: 1rem auto;
 					width: 100%;
 					max-width: 600px;
 				}
@@ -142,7 +151,20 @@ const imageImport = await getImage();
 				font-size: 0.9em;
 				text-transform: uppercase;
 				letter-spacing: 0.05em;
+				margin-bottom: 0.5em;
+			}
+			.author {
+				text-align: center;
+				color: rgb(var(--gray));
+				font-size: 0.9em;
 				margin-bottom: 1em;
+			}
+			.author a {
+				color: rgb(var(--accent));
+				text-decoration: none;
+			}
+			.author a:hover {
+				text-decoration: underline;
 			}
 		</style>
 	</head>
@@ -167,6 +189,20 @@ const imageImport = await getImage();
 				</div>
 				<div class="prose">
 					{categoryDisplay && <div class="category">{categoryDisplay}</div>}
+					{author && (
+						<div class="author">
+							By {author.name}
+							{author.nickname && ` (${author.nickname})`}
+							{author.url && (
+								<>
+									{' • '}
+									<a href={author.url} target="_blank" rel="noopener noreferrer">
+										{new URL(author.url).hostname.replace('www.', '')}
+									</a>
+								</>
+							)}
+						</div>
+					)}
 					<div class="title">
 						<div class="date">
 							<FormattedDate date={pubDate} />

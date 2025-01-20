@@ -8,6 +8,11 @@ const schema = z.object({
     updatedDate: z.coerce.date().optional(),
     heroImage: z.string(),
     category: z.enum(['research', 'development']),
+    author: z.object({
+        name: z.string(),
+        nickname: z.string().optional(),
+        url: z.string().url().optional(),
+    }),
 });
 
 // Define collections

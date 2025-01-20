@@ -4,6 +4,10 @@ description: 'Exploring the latest trends and technologies in web development'
 pubDate: 'Jul 04 2024'
 heroImage: 'blog-placeholder-4.jpg'
 category: 'development'
+author:
+  name: 'Thomas Anderson'
+  nickname: 'WebArchitect'
+  url: 'https://webdev.social/@webarchitect'
 ---
 
 The web development landscape continues to evolve rapidly. Here's an overview of the most significant trends shaping web development in 2024.

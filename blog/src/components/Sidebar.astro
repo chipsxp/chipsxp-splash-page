@@ -27,14 +27,14 @@ type CategoryDisplay = typeof categories[number];
 <div class="fixed inset-y-0 left-0 z-[100]">
     <div class="fixed inset-0 bg-black/50 opacity-0 pointer-events-none transition-opacity duration-300 ease-in-out" id="overlay"></div>
     
-    <button class="fixed top-[190px] left-4 z-[110] flex md:hidden items-center justify-center w-12 h-12 bg-accent text-black rounded-md shadow-lg hover:bg-accent/80 transition-all duration-200 ease-in-out" id="toggleButton">
+    <button class="fixed top-[180px] left-4 z-[110] flex md:hidden items-center justify-center w-12 h-12 bg-accent text-black rounded-md shadow-lg hover:bg-accent/80 transition-all duration-200 ease-in-out" id="toggleButton">
         <span class="sr-only">Toggle Sidebar</span>
         <svg class="w-7 h-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16m-16 6h16"></path>
         </svg>
     </button>
 
-    <aside class="fixed left-0 top-[180px] w-[60vw] h-[calc(100vh-180px)] bg-white/95 border-r border-gray-200 shadow-lg transform md:translate-x-0 -translate-x-full transition-transform duration-300 ease-in-out overflow-hidden lg:w-[30rem] md:w-[26rem] sm:w-[55vw]" id="sidebar">
+    <aside class="fixed left-0 top-[220px] w-[58vw] h-[calc(100vh-180px)] bg-white/95 border-r border-gray-200 shadow-lg transform md:translate-x-0 -translate-x-full transition-transform duration-300 ease-in-out overflow-hidden lg:w-[30rem] md:w-[26rem] sm:w-[55vw]" id="sidebar">
         <div class="h-full overflow-y-auto">
             <div class="p-4 space-y-6">
                 <!-- Banner -->

@@ -4,6 +4,10 @@ description: 'An exploration of quantum computing principles and applications'
 pubDate: 'Jan 04 2024'
 heroImage: 'blog-placeholder-1.jpg'
 category: 'research'
+author:
+  name: 'Alex Martinez'
+  nickname: 'TechResearcher'
+  url: 'https://techblog.martinez.dev'
 ---
 
 Quantum computing represents a paradigm shift in computational capabilities. This article explores the fundamental principles of quantum computing and its potential applications in various fields.
