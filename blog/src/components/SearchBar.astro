@@ -1,26 +1,6 @@
 ---
-import type { CollectionEntry } from 'astro:content';
 
-interface Author {
-  name: string;
-  nickname?: string;
-  url?: string;
-}
 
-interface ContentFrontmatter {
-  title: string;
-  description: string;
-  pubDate: Date;
-  updatedDate?: Date;
-  heroImage: string;
-  category: 'research' | 'development';
-  author: Author;
-}
-
-interface ContentModule {
-  frontmatter: ContentFrontmatter;
-  content: string;
-}
 ---
 
 <div class="search-container">

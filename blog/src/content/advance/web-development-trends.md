@@ -2,8 +2,10 @@
 title: 'Web Development Trends 2024'
 description: 'Exploring the latest trends and technologies in web development'
 pubDate: 'Jul 04 2024'
-heroImage: 'blog-placeholder-4.jpg'
-category: 'development'
+heroImage: 
+  src: '../../assets/advanceimg/blog-placeholder-4.jpg'
+  alt: 'Blog placeholder image'
+category: 'advance'
 author:
   name: 'Thomas Anderson'
   nickname: 'WebArchitect'

@@ -2,7 +2,9 @@
 title: 'First post'
 description: 'Lorem ipsum dolor sit amet'
 pubDate: 'Jul 08 2022'
-heroImage: 'blog-placeholder-3.jpg'
+heroImage:
+  src: '../../assets/researchimg/blog-placeholder-2.jpg'
+  alt: 'A colorful abstract placeholder image for the first blog post'
 category: 'research'
 author:
   name: 'Emma Rodriguez'

@@ -4,7 +4,9 @@ import { socialLinks } from '../consts/links';
 ---
 
 <footer>
-	&copy; {today.getFullYear()} ChipsXP Research and Advance. All rights reserved.
+	<p class="ml-36 *:ml-0">&copy; {today.getFullYear()} ChipsXP Research & Advance.</p>
+	<p class="social-links">All rights reserved.</p>
+	<p class="social-links">Made with ❤️ by <a href="https://github.com/ChipsXP" target="_blank">ChipsXP</a></p>
 	<div class="social-links">
 		{socialLinks.map((link) => (
 			<a href={link.href} target="_blank">
@@ -30,10 +32,13 @@ import { socialLinks } from '../consts/links';
 		background: linear-gradient(var(--gray-gradient)) no-repeat;
 		color: rgb(var(--gray));
 		text-align: center;
+		padding-left: 4em
+		;
 	}
 	.social-links {
 		display: flex;
 		justify-content: center;
+		margin-left: 4em;
 		gap: 1em;
 		margin-top: 1em;
 	}

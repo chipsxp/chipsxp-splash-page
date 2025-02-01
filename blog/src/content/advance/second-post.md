@@ -2,8 +2,10 @@
 title: 'Second post'
 description: 'Lorem ipsum dolor sit amet'
 pubDate: 'Jul 08 2022'
-heroImage: 'blog-placeholder-4.jpg'
-category: 'development'
+heroImage: 
+  src: '../../assets/advanceimg/blog-placeholder-2.jpg'
+  alt: 'Second post Blog placeholder image'
+category: 'advance'
 author:
   name: 'David Kim'
   nickname: 'DevMaster'

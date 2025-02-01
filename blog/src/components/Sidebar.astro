@@ -8,7 +8,7 @@ type CategoryKey = Lowercase<Category>;
 // Get all posts and sort by category
 const researchPosts = await getCollection('research');
 const advancePosts = await getCollection('advance');
-const allPosts: CollectionEntry<'research' | 'advance'>[] = [...researchPosts, ...advancePosts];
+
 
 // Create a map of categories to their recent posts
 const postsByCategory: Record<CategoryKey, CollectionEntry<'research' | 'advance'>[]> = {

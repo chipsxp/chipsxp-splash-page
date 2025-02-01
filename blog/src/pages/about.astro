@@ -1,63 +1,70 @@
 ---
-import Layout from '../layouts/BlogPost.astro';
-import aboutImage from '../assets/images/blog-placeholder-about.jpg';
+import Layout from '../layouts/FrontPage.astro';
+import happyWoman from '../assets/images/happy-woman-with-chipsxp.jpg';
+import bridgeGap from '../assets/images/bridge-the-gap-idea.png';
+import Image from 'astro/components/Image.astro';
 ---
 
 <Layout
-	title="About Me"
-	description="Lorem ipsum dolor sit amet"
-	pubDate={new Date('August 08 2021')}
-	heroImage={aboutImage}
+	title="About Jimmy Burns at ChipsXP Research"
+	description="Jimmy Burns at ChipsXP is more than just an AI software and web development company nestled in St. Petersburg, FL"
+	pubDate={new Date('1/25/2025')}
+	heroImage={{
+		src: bridgeGap,
+		alt: 'Bridge the gap concept illustration showing ChipsXP connecting businesses with technology'
+	}}
+	category="research"
+	author={{
+		name: "Jimmy Burns",
+		url: "https://chipsxp.com"
+	}}
 >
 	<p>
-		Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-		labore et dolore magna aliqua. Vitae ultricies leo integer malesuada nunc vel risus commodo
-		viverra. Adipiscing enim eu turpis egestas pretium. Euismod elementum nisi quis eleifend quam
-		adipiscing. In hac habitasse platea dictumst vestibulum. Sagittis purus sit amet volutpat. Netus
-		et malesuada fames ac turpis egestas. Eget magna fermentum iaculis eu non diam phasellus
-		vestibulum lorem. Varius sit amet mattis vulputate enim. Habitasse platea dictumst quisque
-		sagittis. Integer quis auctor elit sed vulputate mi. Dictumst quisque sagittis purus sit amet.
+		There's been a noticeable change in how small businesses and entrepreneurs are running things. 
+		Many are tapping into local resources to handle most, if not all, of their daily operations. 
+		This often involves outsourcing tasks like web design, e-commerce development, and app creation 
+		to individuals or small firms that offer these services at affordable rates. As a result, small 
+		businesses can concentrate on their core strengths— providing services and selling products —without 
+		having to worry about getting stuck in the weeds of AI software and web design tasks.
 	</p>
 
 	<p>
-		Morbi tristique senectus et netus. Id semper risus in hendrerit gravida rutrum quisque non
-		tellus. Habitasse platea dictumst quisque sagittis purus sit amet. Tellus molestie nunc non
-		blandit massa. Cursus vitae congue mauris rhoncus. Accumsan tortor posuere ac ut. Fringilla urna
-		porttitor rhoncus dolor. Elit ullamcorper dignissim cras tincidunt lobortis. In cursus turpis
-		massa tincidunt dui ut ornare lectus. Integer feugiat scelerisque varius morbi enim nunc.
-		Bibendum neque egestas congue quisque egestas diam. Cras ornare arcu dui vivamus arcu felis
-		bibendum. Dignissim suspendisse in est ante in nibh mauris. Sed tempus urna et pharetra pharetra
-		massa massa ultricies mi.
+		Jimmy Burns at ChipsXP Research is more than just an AI software and web development company nestled 
+		in St. Petersburg, FL; it's a heartfelt symbol of innovation and collaboration. Our mission is to 
+		compassionately bridge the gap between IT companies and small business owners, empowering them with 
+		outstanding services in web, e-commerce, and AI app development.
 	</p>
 
 	<p>
-		Mollis nunc sed id semper risus in. Convallis a cras semper auctor neque. Diam sit amet nisl
-		suscipit. Lacus viverra vitae congue eu consequat ac felis donec. Egestas integer eget aliquet
-		nibh praesent tristique magna sit amet. Eget magna fermentum iaculis eu non diam. In vitae
-		turpis massa sed elementum. Tristique et egestas quis ipsum suspendisse ultrices. Eget lorem
-		dolor sed viverra ipsum. Vel turpis nunc eget lorem dolor sed viverra. Posuere ac ut consequat
-		semper viverra nam. Laoreet suspendisse interdum consectetur libero id faucibus. Diam phasellus
-		vestibulum lorem sed risus ultricies tristique. Rhoncus dolor purus non enim praesent elementum
-		facilisis. Ultrices tincidunt arcu non sodales neque. Tempus egestas sed sed risus pretium quam
-		vulputate. Viverra suspendisse potenti nullam ac tortor vitae purus faucibus ornare. Fringilla
-		urna porttitor rhoncus dolor purus non. Amet dictum sit amet justo donec enim.
+		As a dedicated AI and web developer, I am deeply aware of the unique challenges small businesses encounter 
+		when establishing their online presence. My extensive expertise in various frameworks and frontend 
+		technologies—like HTML, CSS, JavaScript, ReactJS, NextJS, AstrojS, and WordPress—drives me to create dynamic 
+		and captivating websites that perfectly align with your specific needs. Let's transform your vision into 
+		reality together!
 	</p>
 
 	<p>
-		Mattis ullamcorper velit sed ullamcorper morbi tincidunt. Tortor posuere ac ut consequat semper
-		viverra. Tellus mauris a diam maecenas sed enim ut sem viverra. Venenatis urna cursus eget nunc
-		scelerisque viverra mauris in. Arcu ac tortor dignissim convallis aenean et tortor at. Curabitur
-		gravida arcu ac tortor dignissim convallis aenean et tortor. Egestas tellus rutrum tellus
-		pellentesque eu. Fusce ut placerat orci nulla pellentesque dignissim enim sit amet. Ut enim
-		blandit volutpat maecenas volutpat blandit aliquam etiam. Id donec ultrices tincidunt arcu. Id
-		cursus metus aliquam eleifend mi.
+		Website design is not just about aesthetics; it’s about crafting an experience that resonates with users. I 
+		prioritize user experience and accessibility in all my projects because I believe that everyone should have 
+		equal access to information online. Whether you’re looking to develop an e-commerce platform or a simple 
+		informational site for your small business, my expertise ensures that your vision comes to life seamlessly.
 	</p>
 
 	<p>
-		Tempus quam pellentesque nec nam aliquam sem. Risus at ultrices mi tempus imperdiet. Id porta
-		nibh venenatis cras sed felis eget velit. Ipsum a arcu cursus vitae. Facilisis magna etiam
-		tempor orci eu lobortis elementum. Tincidunt dui ut ornare lectus sit. Quisque non tellus orci
-		ac. Blandit libero volutpat sed cras. Nec tincidunt praesent semper feugiat nibh sed pulvinar
-		proin gravida. Egestas integer eget aliquet nibh praesent tristique magna.
+		<Image src={happyWoman} alt="Happy Woman With ChipsXP" />
+	</p>
+
+	<p>
+		Whether you’re looking to build a stunning website design or launch an e-commerce platform that resonates with 
+		your audience, my expertise can help bring your vision to life. I prioritize user experience and accessibility 
+		in every project because I believe that a well-designed website should be inclusive and easy for everyone to 
+		navigate.
+	</p>
+
+	<p>
+		At ChipsXP, we are driven by a team of deeply skilled professionals from some of the world's leading IT firms. 
+		We are wholeheartedly committed to partnering with individuals and small businesses to create exceptional 
+		websites and applications that truly shine. Moreover, we offer free consultations —please feel free to <a href="/contact">reach out 
+		to us for any questions or support you may need!</a>
 	</p>
 </Layout>

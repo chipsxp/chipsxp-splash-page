@@ -2,7 +2,9 @@
 title: 'Quantum Computing Research'
 description: 'An exploration of quantum computing principles and applications'
 pubDate: 'Jan 04 2024'
-heroImage: 'blog-placeholder-1.jpg'
+heroImage: 
+  src: '../../assets/researchimg/blog-placeholder-4.jpg'
+  alt: 'Quantum Computing Research Blog placeholder image'
 category: 'research'
 author:
   name: 'Alex Martinez'

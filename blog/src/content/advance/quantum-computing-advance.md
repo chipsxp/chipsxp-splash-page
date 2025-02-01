@@ -2,8 +2,10 @@
 title: 'Quantum Computing Advance Research'
 description: 'An exploration of quantum computing principles and applications'
 pubDate: 'Jan 04 2024'
-heroImage: 'blog-placeholder-1.jpg'
-category: 'development'
+heroImage: 
+  src: '../../assets/advanceimg/blog-placeholder-1.jpg'
+  alt: 'Quantum Computing Advance Blog placeholder image'
+category: 'advance'
 author:
   name: 'Dr. Sarah Chen'
   nickname: 'QuantumPro'
