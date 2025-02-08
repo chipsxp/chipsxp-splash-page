@@ -2,7 +2,7 @@
 export const navigationLinks = [
   {
     name: "Research",
-    href: "/",
+    href: "/research",
   },
   {
     name: "Advance",

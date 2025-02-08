@@ -1,5 +1,5 @@
 ---
-
+import '../styles/searchbar.css';
 
 ---
 
@@ -22,80 +22,24 @@
   </form>
 </div>
 
-<style>
-  .search-container {
-    position: relative;
-  }
-  
-  .search-form {
-    display: flex;
-    gap: 0.5rem;
-    width: 100%;
-    max-width: 500px;
-    margin: 0 auto;
-  }
 
-  .search-input {
-    flex: 1;
-    padding: 0.5rem 1rem;
-    border: 2px solid rgba(var(--black), 0.1);
-    border-radius: 20px;
-    font-size: 0.9rem;
-    background: rgba(var(--black), 0.05);
-    color: var(--black);
-    transition: all 0.2s ease;
-  }
 
-  .search-input:focus {
-    outline: none;
-    border-color: rgb(var(--accent));
-    background: white;
-    box-shadow: 0 0 0 3px rgba(var(--accent), 0.1);
-  }
+<script is:inline>
+  const searchForm = document.getElementById('search-form');
+  const searchInput = document.getElementById('search-input');
 
-  .search-button {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 0.5rem;
-    background: none;
-    border: none;
-    color: var(--black);
-    cursor: pointer;
-    transition: color 0.2s ease;
-  }
+  if (!searchForm || !searchInput) {
+    console.error('Search form elements not found');
+  } else {
+    let searchTimeout;
 
-  .search-button:hover {
-    color: rgb(var(--accent));
-  }
-
-  @media (max-width: 768px) {
-    .search-form {
-      max-width: 300px;
-      margin: 0 auto;
-    }
-  }
-</style>
-
-<script>
-  document.addEventListener('DOMContentLoaded', () => {
-    const searchForm = document.getElementById('search-form');
-    const searchInput = document.getElementById('search-input');
-
-    if (!searchForm || !searchInput) {
-      console.error('Search form elements not found');
-      return;
-    }
-
-    let searchTimeout: number | undefined;
-
-    const handleSearch = async (e: Event, isImmediate = false) => {
+    const handleSearch = async (e, isImmediate = false) => {
       if (!isImmediate) {
         e.preventDefault();
       }
       
-      const query = isImmediate ? (e.target as HTMLInputElement).value.toLowerCase() 
-                               : (searchInput as HTMLInputElement).value.toLowerCase();
+      const query = isImmediate ? e.target.value.toLowerCase() 
+                              : searchInput.value.toLowerCase();
 
       // Clear any existing timeout
       if (searchTimeout) {
@@ -123,7 +67,7 @@
       }
     };
 
-    const performSearch = async (query: string) => {
+    const performSearch = async (query) => {
       // Only log when actually performing the search
       try {
         console.log('Fetching content...');
@@ -137,7 +81,7 @@
         const searchIndex = await response.json();
         console.log('Search index loaded:', searchIndex);
         
-        const results = searchIndex.filter((entry: any) => {
+        const results = searchIndex.filter((entry) => {
           const searchableText = [
             entry.title,
             entry.description,
@@ -171,10 +115,10 @@
     searchInput.addEventListener('input', (e) => handleSearch(e, true));
     
     // Handle Enter key
-    searchInput.addEventListener('keypress', (e: KeyboardEvent) => {
+    searchInput.addEventListener('keypress', (e) => {
       if (e.key === 'Enter') {
         handleSearch(e, false);
       }
     });
-  });
+  }
 </script>

@@ -80,7 +80,7 @@ const { category, posts } = Astro.props;
 				</div>
 				<div class="posts-grid">
 					{posts.map(post => (
-						<a href={`/${post.collection}/${post.slug}`}>
+						<a href={`/${post.collection}/${post.id}`}>
 							<div class="post-card">
 								<div class="post-date">
 									<FormattedDate date={post.data.pubDate} />

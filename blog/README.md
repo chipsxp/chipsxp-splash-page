@@ -1,12 +1,12 @@
-# ChipsXP Blog
+# ChipsXP Research and Development ( Renamed to 'Adavance' as the Category )
 
 ## Overview
 
-This project is a blog application designed to showcase articles and posts on various topics such as quantum computing, web development trends, and more. Built with Astro 4.0, this application provides a fast, modern, and user-friendly interface for both readers and content creators.
+This project is a directory, research projects, and development portfolio website application designed to showcase articles and posts on various topics in two categories, research and advance. Built with Astro 5.1, this application provides a fast, modern, and user-friendly interface for both readers and content creators.
 
 ## Main Technologies
 
-- **Astro 4.0**: Built using Astro's latest version, leveraging its Islands Architecture for optimal performance and partial hydration.
+- **Astro 5.1**: Built using Astro's latest version, leveraging its Islands Architecture for optimal performance and partial hydration.
 - **TypeScript**: Used for type safety and improved developer experience.
 - **Tailwind CSS**: Utilized for styling with a utility-first approach and built-in dark mode support.
 - **Markdown/MDX**: Content is written in Markdown and MDX, with full support for Astro's Content Collections API.

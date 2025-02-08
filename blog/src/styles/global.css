@@ -44,8 +44,8 @@ body {
 	/* Body content font-size in rem; should keep the font propotional to screen sizes, 
 	* 1.0rem = 16px @full HD
 	*/
-	font-size: 1.6rem;
-	line-height: 1.6;
+	font-size: 1.4rem;
+	line-height: 1.2;
 }
 
 /* Custom main container styles for body content */
@@ -93,12 +93,17 @@ a {
 a:hover {
 	color: var(--accent);
 }
-p {
-	margin-bottom: 1em;
-}
+
+/* Custom paragraph styles for articles content */
 .prose p {
 	margin-bottom: 2em;
+	font-size: 1.4rem;
 }
+.prose ol, ul {
+	font-size: 1.4rem;
+}
+
+/* Custom styles for the code block */
 textarea {
 	width: 100%;
 	font-size: 16px;

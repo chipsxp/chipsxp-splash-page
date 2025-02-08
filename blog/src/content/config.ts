@@ -1,4 +1,5 @@
 import { z, defineCollection, type SchemaContext  } from "astro:content";
+import { glob } from 'astro/loaders'
 
 // Define schemas for each collection
 const schema = ({ image }: SchemaContext) => z.object({
@@ -11,7 +12,7 @@ const schema = ({ image }: SchemaContext) => z.object({
     alt: z.string(),
   }),
   tags: z.array(z.string()).optional(),
-  category: z.enum(["research", "advance"]),
+  category: z.enum(['research', 'advance']),
   author: z.object({
     name: z.string(),
     nickname: z.string().optional(),
@@ -24,11 +25,13 @@ const schema = ({ image }: SchemaContext) => z.object({
 // Define collections
 export const collections = {
     'research': defineCollection({
-        type: 'content',
+      loader: glob({pattern:"**/*.{md,mdx}", base:"src/content/research"}),
+        type: 'content_layer',
         schema,
     }),
     'advance': defineCollection({
-        type: 'content',
+      loader: glob({pattern:"**/*.{md,mdx}", base:"src/content/advance"}),
+        type: 'content_layer',
         schema,
     }),
 };

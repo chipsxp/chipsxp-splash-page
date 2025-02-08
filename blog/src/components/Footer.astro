@@ -1,6 +1,7 @@
 ---
 const today = new Date();
 import { socialLinks } from '../consts/links';
+import '../styles/footer.css';
 ---
 
 <footer>
@@ -20,37 +21,10 @@ import { socialLinks } from '../consts/links';
 					><path
 						fill="currentColor"
 						d={link.icon}
-					></path></svg
-				>
+					></path>
+					</svg>
 			</a>
 		))}
 	</div>
 </footer>
-<style>
-	footer {
-		padding: 2em 1em 4.8em 1em;
-		background: linear-gradient(var(--gray-gradient)) no-repeat;
-		color: rgb(var(--gray));
-		text-align: center;
-		padding-left: 4em
-		;
-	}
-	.social-links {
-		display: flex;
-		justify-content: center;
-		margin-left: 4em;
-		gap: 1em;
-		margin-top: 1em;
-	}
-	.social-links a {
-		text-decoration: none;
-		color: rgb(var(--gray));
-	}
-	.social-links svg {
-		transition: transform 0.3s ease, filter 0.3s ease;
-	}
-	.social-links a:hover svg {
-		transform: scale(1.2);
-		filter: drop-shadow(0 0 4px rgba(var(--accent), 0.4));
-	}
-</style>
+
