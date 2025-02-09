@@ -1,9 +1,9 @@
-z---
+---
 import BaseHead from '../components/BaseHead.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
-
+import '../styles/search.css';
 ---
 
 <!DOCTYPE html>
@@ -34,107 +34,6 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 		<Footer />
 	</body>
 </html>
-
-<style>
-	main {
-		width: 960px;
-		max-width: calc(100% - 2em);
-		margin: 0 auto;
-		padding: 3em 1em;
-	}
-
-	h1 {
-		font-size: 2.5em;
-		margin-bottom: 0.5em;
-	}
-
-	.results-count {
-		color: #666;
-		margin-bottom: 2em;
-		font-size: 1.1em;
-	}
-
-	.search-results {
-		list-style: none;
-		padding: 0;
-		margin: 0;
-	}
-
-	.search-result {
-		margin: 2em 0;
-		padding: 1.5em;
-		border: 1px solid rgba(var(--black), 0.1);
-		border-radius: 8px;
-		transition: all 0.2s ease;
-	}
-
-	.search-result:hover {
-		background: rgba(var(--black), 0.02);
-		border-color: rgba(var(--accent), 0.2);
-		transform: translateY(-2px);
-		box-shadow: 0 4px 12px rgba(var(--black), 0.05);
-	}
-
-	.search-result a {
-		text-decoration: none;
-		color: inherit;
-	}
-
-	.search-result h2 {
-		margin: 0;
-		color: rgb(var(--accent));
-		font-size: 1.5em;
-	}
-
-	.description {
-		margin: 0.8em 0;
-		color: #444;
-		line-height: 1.6;
-	}
-
-	.meta {
-		display: flex;
-		gap: 1em;
-		font-size: 0.9em;
-		color: #666;
-		margin-top: 1em;
-	}
-
-	.empty-state {
-		text-align: center;
-		padding: 3em 1em;
-		background: rgba(var(--black), 0.02);
-		border-radius: 8px;
-	}
-
-	.suggestion-links {
-		margin-top: 1.5em;
-		display: flex;
-		gap: 1em;
-		justify-content: center;
-	}
-
-	.suggestion-links a {
-		padding: 0.8em 1.5em;
-		border: 2px solid rgb(var(--accent));
-		border-radius: 20px;
-		color: rgb(var(--accent));
-		text-decoration: none;
-		transition: all 0.2s ease;
-	}
-
-	.suggestion-links a:hover {
-		background: rgb(var(--accent));
-		color: white;
-	}
-
-	@media (max-width: 720px) {
-		.meta {
-			flex-direction: column;
-			gap: 0.5em;
-		}
-	}
-</style>
 
 <script>
   interface SearchResult {
