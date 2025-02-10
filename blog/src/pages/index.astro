@@ -1,32 +1,30 @@
 ---
-
-import { Image } from 'astro:assets';
-import { navigationLinks } from '../consts/links';
-import chipsxpLogo from '../assets/images/chipsxp-research-logo.jpg';
-import BaseHead from '../components/BaseHead.astro';
+import { Image } from "astro:assets";
+import { navigationLinks } from "../consts/links";
+import chipsxpLogo from "../assets/images/chipsxp-research-logo.jpg";
+import BaseHead from "../components/BaseHead.astro";
 
 // Import category images
-import bridgeGap from '../assets/images/bridge-the-gap-idea.png';
-import technoField from '../assets/images/techno-field.jpg';
-import userSupport from '../assets/images/user-support.jpg';
-import happyWoman from '../assets/images/happy-woman-with-chipsxp.jpg';
-import '../styles/index.css'; 
+import bridgeGap from "../assets/images/bridge-the-gap-idea.png";
+import technoField from "../assets/images/techno-field.jpg";
+import userSupport from "../assets/images/user-support.jpg";
+import happyWoman from "../assets/images/happy-woman-with-chipsxp.jpg";
+import "../styles/index.css";
 ---
 
 <html lang="en">
   <head>
-    <BaseHead 
+    <BaseHead
       title="ChipsXP - Research & Development"
       description="Explore ChipsXP's innovative research and development in bridging the technology gap. Discover our latest advances in technology and user-focused solutions."
     />
-    
   </head>
   <body>
     <div class="container">
       <div class="logo-container">
-        <Image 
-          src={chipsxpLogo} 
-          alt="ChipsXP Logo" 
+        <Image
+          src={chipsxpLogo}
+          alt="ChipsXP Logo"
           class="logo"
           width={250}
           height={250}
@@ -35,35 +33,25 @@ import '../styles/index.css';
 
       <div class="grid">
         <a href={navigationLinks[0].href} class="card">
-          <Image 
-            src={bridgeGap} 
-            alt="Research" 
-            width={600}
-            height={375}
-          />
+          <Image src={bridgeGap} alt="Research" width={600} height={375} />
           <div class="card-overlay">
             <h2 class="card-title">{navigationLinks[0].name}</h2>
           </div>
         </a>
 
         <a href={navigationLinks[1].href} class="card">
-          <Image 
-            src={technoField} 
-            alt="Advance" 
-            width={600}
-            height={375}
-          />
+          <Image src={technoField} alt="Advance" width={600} height={375} />
           <div class="card-overlay">
             <h2 class="card-title">{navigationLinks[1].name}</h2>
           </div>
         </a>
 
         <a href={navigationLinks[2].href} class="card">
-          <Image 
-            src={userSupport} 
-            alt="About ChipsXP" 
+          <Image
+            src={userSupport}
+            alt="About ChipsXP"
             width={600}
-            height={375}
+            height={350}
           />
           <div class="card-overlay">
             <h2 class="card-title">{navigationLinks[2].name}</h2>
@@ -71,12 +59,7 @@ import '../styles/index.css';
         </a>
 
         <a href={navigationLinks[3].href} class="card">
-          <Image 
-            src={happyWoman} 
-            alt="Contact Devs" 
-            width={600}
-            height={375}
-          />
+          <Image src={happyWoman} alt="Contact Devs" width={600} height={375} />
           <div class="card-overlay">
             <h2 class="card-title">{navigationLinks[3].name}</h2>
           </div>
