@@ -1,208 +1,346 @@
 ---
+import { type CollectionEntry } from "astro:content";
+import { Image } from "astro:assets";
+import BaseHead from "../components/BaseHead.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import FormattedDate from "../components/FormattedDate.astro";
+import Sidebar from "../components/Sidebar.astro";
+import type { CollectionKey } from "astro:content";
 
-import { type CollectionEntry } from 'astro:content';
-import { Image } from 'astro:assets';
-import BaseHead from '../components/BaseHead.astro';
-import Header from '../components/Header.astro';
-import Footer from '../components/Footer.astro';
-import FormattedDate from '../components/FormattedDate.astro';
-import Sidebar from '../components/Sidebar.astro';
-import type { CollectionKey } from 'astro:content';
+type Props = CollectionEntry<CollectionKey>["data"];
 
-type Props = CollectionEntry< CollectionKey >['data'];
-
-
-const { title, description, pubDate, updatedDate, heroImage, category, author } = Astro.props;
-const categoryDisplay = category ? category.charAt(0).toUpperCase() + category.slice(1) : '';
-
+const {
+  title,
+  description,
+  pubDate,
+  updatedDate,
+  heroImage,
+  category,
+  author,
+} = Astro.props;
+const categoryDisplay = category
+  ? category.charAt(0).toUpperCase() + category.slice(1)
+  : "";
 ---
 
 <html lang="en">
-	<head>
-		<BaseHead title={title} description={description} />
-		<style>
-			.layout-container {
-				display: flex; 
-				min-height: 100vh;
-				padding-top: 15px; /* 15px under the header container */
-			}
-			
-			main {
-				width: calc(100% - 160px);
-				max-width: 100%;
-				margin: 0 0 0 160px;
-				padding: 1em;
-			}
-			.hero-image {
-				width: 80%;
-				margin: 0 8% 0 15%;
-				padding: 1em 0;
-				transform: translateX(20px);
-			}
-			.hero-image img {
-				display: block;
-				margin: 0 auto;
-				border-radius: 12px;
-				box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-				max-width: 90%;
-				height: auto;
-			}
-			.prose {
-				width: 72%;
-				max-width: calc(100% - 1em);
-				margin: 0 2em 0 auto;
-				padding: 1.5em;
-				color: rgb(var(--gray-dark));
-			}
-			.title {
-				margin-bottom: 1em;
-				padding: 1em 0;
-				text-align: center;
-				line-height: 1;
-			}
-			.title h1 {
-				margin: 0 0 0.5em 0;
-			}
-			.date {
-				margin-bottom: 0.5em;
-				color: rgb(var(--gray));
-			}
-			.last-updated-on {
-				font-style: italic;
-			}
-			.category {
-				text-align: center;
-				color: rgb(var(--gray));
-				font-size: 0.9em;
-				text-transform: uppercase;
-				letter-spacing: 0.05em;
-				margin-bottom: 0.5em;
-			}
-			.author {
-				text-align: center;
-				color: rgb(var(--gray));
-				font-size: 0.9em;
-				margin-bottom: 1em;
-			}
-			.author a {
-				color: rgb(var(--accent));
-				text-decoration: none;
-			}
-			.author a:hover {
-				text-decoration: underline;
-			}
+  <head>
+    <BaseHead title={title} description={description} />
+    <style>
+      /* Generic page container */
+      .page-container {
+        max-width: 720px;
+        margin: 2rem auto;
+        padding: 0 1rem;
+      }
 
-			@media (max-width: 768px) {
-				.layout-container {
-					flex-direction: column;
-					padding-top: 25px;
-				}
-				main {
-					width: 100%;
-					margin: 0;
-					padding: 0.75em;
-				}
-				.hero-image {
-					padding: 0;
-					margin: 0 0 0 2rem;
-				}
-				.hero-image img {
-					margin: 1rem auto;
-					width: 100%;
-					max-width: 600px;
-				}
-				.prose {
-					width: 100%;
-					max-width: 100%;
-					padding: 0.75em;
-					padding-left: 5rem; /* Increase space for the hamburger icon */
-					font-size: 16px;
-					line-height: 1.6;
-				}
-				.prose h1 {
-					font-size: 1.75rem;
-					line-height: 1.3;
-					margin-bottom: 0.75em;
-				}
-				.prose h2 {
-					font-size: 1.5rem;
-					line-height: 1.3;
-					margin: 1.5em 0 0.75em;
-				}
-				.prose h3 {
-					font-size: 1.25rem;
-					line-height: 1.3;
-					margin: 1.5em 0 0.75em;
-				}
-				.prose p {
-					margin-bottom: 1em;
-				}
-				.title {
-					padding: 0.5em 0;
-					margin-bottom: 0.75em;
-				}
-				.category {
-					font-size: 0.85em;
-					margin-bottom: 0.75em;
-				}
-			}
-			
-		</style>
-	</head>
+      /* Contact form styles */
+      .prose .contact-form {
+        background: rgba(255, 255, 255, 0.8);
+        backdrop-filter: blur(10px);
+        padding: 2.5rem;
+        border-radius: 16px;
+        box-shadow:
+          0 4px 6px -1px rgba(0, 0, 0, 0.1),
+          0 2px 4px -1px rgba(0, 0, 0, 0.06);
+      }
+      .prose .contact-form form {
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+        position: relative;
+      }
+      .prose .contact-form .form-group {
+        display: flex;
+        flex-direction: column;
+        gap: 0.75rem;
+      }
+      .prose .contact-form label {
+        font-weight: 500;
+        color: #374151;
+        font-size: 0.95rem;
+        letter-spacing: 0.025em;
+      }
+      .prose .contact-form input,
+      .prose .contact-form textarea {
+        padding: 0.875rem 1rem;
+        border: 2px solid #e5e7eb;
+        border-radius: 8px;
+        font-size: 1rem;
+        background: rgba(255, 255, 255, 0.9);
+        transition: all 0.2s ease;
+        width: 100%;
+        color: #1f2937;
+      }
+      .prose .contact-form input:hover,
+      .prose .contact-form textarea:hover {
+        border-color: #d1d5db;
+        background: #ffffff;
+      }
+      .prose .contact-form input:focus,
+      .prose .contact-form textarea:focus {
+        outline: none;
+        border-color: #4a9eff;
+        background: #ffffff;
+        box-shadow:
+          0 0 0 3px rgba(74, 158, 255, 0.12),
+          0 1px 2px 0 rgba(0, 0, 0, 0.05);
+      }
+      .prose .contact-form textarea {
+        min-height: 150px;
+        resize: vertical;
+        line-height: 1.5;
+      }
+      .prose .contact-form .submit-button {
+        background: linear-gradient(45deg, #4a9eff, #63b3ff);
+        color: white;
+        padding: 1rem 2.5rem;
+        border: none;
+        border-radius: 12px;
+        font-size: 1.125rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+        margin-top: 2rem;
+        letter-spacing: 0.025em;
+        box-shadow:
+          0 4px 6px -1px rgba(74, 158, 255, 0.2),
+          0 2px 4px -1px rgba(74, 158, 255, 0.1);
+      }
+      .prose .contact-form .submit-button:hover {
+        transform: translateY(-2px);
+        box-shadow:
+          0 6px 10px -1px rgba(74, 158, 255, 0.3),
+          0 4px 6px -1px rgba(74, 158, 255, 0.15);
+        background: linear-gradient(45deg, #357abd, #4a9eff);
+      }
+      .prose .contact-form .submit-button:active {
+        transform: translateY(0);
+        box-shadow:
+          0 2px 4px -1px rgba(74, 158, 255, 0.2),
+          0 1px 2px -1px rgba(74, 158, 255, 0.1);
+      }
+      .description {
+        color: #1b1c1e;
+        margin-bottom: 2rem;
+        font-size: 1.6rem;
+        line-height: 1.6;
+      }
 
-	<body>
-		<Header />
-		<div class="layout-container">
-			<Sidebar />
-			<main>
-			<article>
-				<div class="hero-image">
-					{heroImage && (
-						<Image
-							src={heroImage?.src || ""}
-							alt={heroImage?.alt || "Hero image for the blog post"}
-							width={960}
-							height={960}
-							format="webp"
-							quality="high"
-						/>
-					)}
-				</div>
-				<div class="prose">
-					{categoryDisplay && <div class="category">{categoryDisplay}</div>}
-					{author && (
-						<div class="author">
-							By {author.name}
-							{author.nickname && ` (${author.nickname})`}
-							{author.url && (
-								<>
-									{' • '}
-									<a href={author.url} target="_blank" rel="noopener noreferrer">
-										{new URL(author.url).hostname.replace('www.', '')}
-									</a>
-								</>
-							)}
-						</div>
-					)}
-					<div class="title">
-						<div class="date">
-							<FormattedDate date={pubDate} />
-							{
-								updatedDate && (
-									<div class="last-updated-on">
-										Last updated on <FormattedDate date={updatedDate} />
-									</div>
-								)
-							}
-						</div>
-						<h1>{title}</h1>
-						<hr />
-					</div>
-					<slot />
-				</div>
-			</article>
-			</main>
-		</div>
-		<Footer />
-	</body>
+      /* Layout container */
+      .layout-container {
+        display: flex;
+        min-height: 100vh;
+        padding-top: 15px; /* 15px under the header container */
+      }
+
+      main {
+        width: calc(100% - 160px);
+        max-width: 100%;
+        margin: 0 0 0 160px;
+        padding: 1em;
+      }
+
+      /* Hero image styling */
+      .hero-image {
+        width: 90%;
+        margin: 0 8% 0 15%;
+        padding: 1em 0;
+        transform: translateX(20px);
+      }
+      .hero-image img {
+        display: block;
+        margin: 0 auto;
+        border-radius: 12px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        max-width: 80%;
+        height: auto;
+      }
+
+      /* Content styling */
+      .prose {
+        width: 74%;
+        max-width: calc(100% - 1em);
+        margin: 0 2em 0 auto;
+        padding: 1.5em;
+        color: rgb(var(--gray-dark));
+      }
+
+      /* Global image styling */
+      :global(.content-image) {
+        width: 720px;
+        max-width: 100%;
+        height: auto;
+        display: block;
+        margin: 2rem auto;
+        border-radius: 12px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      }
+
+      .title {
+        margin-bottom: 1em;
+        padding: 1em 0;
+        text-align: center;
+        line-height: 1;
+      }
+      .title h1 {
+        margin: 0 0 0.5em 0;
+      }
+      .date {
+        margin-bottom: 0.5em;
+        color: rgb(var(--gray));
+      }
+      .last-updated-on {
+        font-style: italic;
+      }
+      .category {
+        text-align: center;
+        color: rgb(var(--gray));
+        font-size: 0.9em;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        margin-bottom: 0.5em;
+      }
+      .author {
+        text-align: center;
+        color: rgb(var(--gray));
+        font-size: 0.9em;
+        margin-bottom: 1em;
+      }
+      .author a {
+        color: rgb(var(--accent));
+        text-decoration: none;
+      }
+      .author a:hover {
+        text-decoration: underline;
+      }
+
+      @media (max-width: 768px) {
+        .layout-container {
+          flex-direction: column;
+          padding-top: 25px;
+        }
+        main {
+          width: 100%;
+          margin: 0;
+          padding: 0.75em;
+        }
+        .hero-image {
+          padding: 0;
+          margin: 0 auto;
+          margin: 0 0 0 2rem;
+        }
+        .hero-image img {
+          margin: 1rem auto;
+          width: 100%;
+          max-width: 600px;
+        }
+        .prose {
+          max-width: 74%;
+          padding: 0.75em;
+          padding-left: 5rem;
+          font-size: 16px;
+          line-height: 1.6;
+        }
+        :global(.content-image) {
+          width: 100%;
+          max-width: 600px;
+        }
+        .prose h1 {
+          font-size: 1.75rem;
+          line-height: 1.3;
+          margin-bottom: 0.75em;
+        }
+        .prose h2 {
+          font-size: 1.5rem;
+          line-height: 1.3;
+          margin: 1.5em 0 0.75em;
+        }
+        .prose h3 {
+          font-size: 1.25rem;
+          line-height: 1.3;
+          margin: 1.5em 0 0.75em;
+        }
+        .prose p {
+          margin-bottom: 1em;
+        }
+        .title {
+          padding: 0.5em 0;
+          margin-bottom: 0.75em;
+        }
+        .category {
+          font-size: 0.85em;
+          margin-bottom: 0.75em;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <Header />
+    <div class="layout-container">
+      <Sidebar />
+      <main>
+        <article>
+          <div class="hero-image">
+            {
+              heroImage && (
+                <Image
+                  src={heroImage?.src || ""}
+                  alt={heroImage?.alt || "Hero image for the blog post"}
+                  width={960}
+                  height={480}
+                  format="webp"
+                  quality="high"
+                />
+              )
+            }
+          </div>
+          <div class="prose">
+            {categoryDisplay && <div class="category">{categoryDisplay}</div>}
+            {
+              author && (
+                <div class="author">
+                  By {author.name}
+                  {author.nickname && ` (${author.nickname})`}
+                  {author.url && (
+                    <>
+                      {" • "}
+                      <a
+                        href={author.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        {new URL(author.url).hostname.replace("www.", "")}
+                      </a>
+                    </>
+                  )}
+                </div>
+              )
+            }
+            <div class="title">
+              <div class="date">
+                <FormattedDate date={pubDate} />
+                {
+                  updatedDate && (
+                    <div class="last-updated-on">
+                      Last updated on <FormattedDate date={updatedDate} />
+                    </div>
+                  )
+                }
+              </div>
+              <h1>{title}</h1>
+              <hr />
+            </div>
+            <slot />
+          </div>
+        </article>
+      </main>
+    </div>
+    <Footer />
+  </body>
 </html>

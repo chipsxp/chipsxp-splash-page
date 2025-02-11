@@ -1,12 +1,12 @@
 ---
-import '../styles/searchbar.css';
-
+// This component is used to search articles by title, description, author name, and content.
+// It fetches a search index from an API endpoint and navigates to a search page with the results.
 ---
 
 <div class="search-container">
   <form id="search-form" class="search-form" role="search">
-    <input 
-      type="search" 
+    <input
+      type="search"
       id="search-input"
       name="search"
       placeholder="Search articles..."
@@ -14,7 +14,17 @@ import '../styles/searchbar.css';
       aria-label="Search articles"
     />
     <button type="submit" class="search-button" aria-label="Submit search">
-      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="20"
+        height="20"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      >
         <circle cx="11" cy="11" r="8"></circle>
         <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
       </svg>
@@ -22,14 +32,67 @@ import '../styles/searchbar.css';
   </form>
 </div>
 
+<style>
+  .search-container {
+    position: relative;
+  }
 
+  .search-form {
+    display: flex;
+    gap: 0.5rem;
+    width: 100%;
+    max-width: 500px;
+    margin: 0 auto;
+  }
+
+  .search-input {
+    flex: 1;
+    padding: 0.5rem 1rem;
+    border: 2px solid rgba(var(--black), 0.1);
+    border-radius: 20px;
+    font-size: 0.9rem;
+    background: rgba(var(--black), 0.05);
+    color: var(--black);
+    transition: all 0.2s ease;
+  }
+
+  .search-input:focus {
+    outline: none;
+    border-color: rgb(var(--accent));
+    background: white;
+    box-shadow: 0 0 0 3px rgba(var(--accent), 0.1);
+  }
+
+  .search-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.5rem;
+    background: none;
+    border: none;
+    color: var(--black);
+    cursor: pointer;
+    transition: color 0.2s ease;
+  }
+
+  .search-button:hover {
+    color: rgb(var(--accent));
+  }
+
+  @media (max-width: 768px) {
+    .search-form {
+      max-width: 300px;
+      margin: 0 auto;
+    }
+  }
+</style>
 
 <script is:inline>
-  const searchForm = document.getElementById('search-form');
-  const searchInput = document.getElementById('search-input');
+  const searchForm = document.getElementById("search-form");
+  const searchInput = document.getElementById("search-input");
 
   if (!searchForm || !searchInput) {
-    console.error('Search form elements not found');
+    console.error("Search form elements not found");
   } else {
     let searchTimeout;
 
@@ -37,9 +100,10 @@ import '../styles/searchbar.css';
       if (!isImmediate) {
         e.preventDefault();
       }
-      
-      const query = isImmediate ? e.target.value.toLowerCase() 
-                              : searchInput.value.toLowerCase();
+
+      const query = isImmediate
+        ? e.target.value.toLowerCase()
+        : searchInput.value.toLowerCase();
 
       // Clear any existing timeout
       if (searchTimeout) {
@@ -52,7 +116,7 @@ import '../styles/searchbar.css';
         if (searchTimeout) {
           clearTimeout(searchTimeout);
         }
-        
+
         // Only set new timeout if query is long enough
         if (query.length >= 3) {
           searchTimeout = window.setTimeout(async () => {
@@ -70,53 +134,56 @@ import '../styles/searchbar.css';
     const performSearch = async (query) => {
       // Only log when actually performing the search
       try {
-        console.log('Fetching content...');
-        
+        console.log("Fetching content...");
+
         // Fetch search index from a dedicated endpoint
-        const response = await fetch('/api/search-index.json');
+        const response = await fetch("/api/search-index.json");
         if (!response.ok) {
-          throw new Error('Failed to fetch search index');
+          throw new Error("Failed to fetch search index");
         }
-        
+
         const searchIndex = await response.json();
-        console.log('Search index loaded:', searchIndex);
-        
+        console.log("Search index loaded:", searchIndex);
+
         const results = searchIndex.filter((entry) => {
           const searchableText = [
             entry.title,
             entry.description,
             entry.authorName,
             entry.authorNickname,
-            entry.content
-          ].filter(Boolean).join(' ').toLowerCase();
-          
+            entry.content,
+          ]
+            .filter(Boolean)
+            .join(" ")
+            .toLowerCase();
+
           return searchableText.includes(query);
         });
 
-        console.log('Search results:', results);
+        console.log("Search results:", results);
 
         // Store results in sessionStorage
-        sessionStorage.setItem('searchQuery', query);
-        sessionStorage.setItem('searchResults', JSON.stringify(results));
-        
+        sessionStorage.setItem("searchQuery", query);
+        sessionStorage.setItem("searchResults", JSON.stringify(results));
+
         // Navigate to search page with just the query parameter
         const searchUrl = `/search?q=${encodeURIComponent(query)}`;
-        console.log('Navigating to:', searchUrl);
+        console.log("Navigating to:", searchUrl);
         window.location.href = searchUrl;
       } catch (error) {
-        console.error('Search error:', error);
+        console.error("Search error:", error);
       }
     };
 
     // Handle form submission
-    searchForm.addEventListener('submit', (e) => handleSearch(e, false));
-    
+    searchForm.addEventListener("submit", (e) => handleSearch(e, false));
+
     // Handle real-time search
-    searchInput.addEventListener('input', (e) => handleSearch(e, true));
-    
+    searchInput.addEventListener("input", (e) => handleSearch(e, true));
+
     // Handle Enter key
-    searchInput.addEventListener('keypress', (e) => {
-      if (e.key === 'Enter') {
+    searchInput.addEventListener("keypress", (e) => {
+      if (e.key === "Enter") {
         handleSearch(e, false);
       }
     });

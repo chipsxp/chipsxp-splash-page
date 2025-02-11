@@ -1,38 +1,45 @@
 ---
-import BaseHead from '../components/BaseHead.astro';
-import Header from '../components/Header.astro';
-import Footer from '../components/Footer.astro';
-import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
-import '../styles/search.css';
+import BaseHead from "../components/BaseHead.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import { SITE_TITLE, SITE_DESCRIPTION } from "../consts";
+import "../styles/search.css";
 ---
 
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-	<head>
-		<BaseHead title={`Search Results - ${SITE_TITLE}`} description={SITE_DESCRIPTION} />
-	</head>
-	<body>
-		<Header />
-		<main>
-			<article>
-				<h1>Search Results for "<span id="search-query"></span>"</h1>
-				<p class="results-count"><span id="results-count">0</span> results found</p>
-				
-				<div id="empty-state" class="empty-state" style="display: none;">
-					<p>No results found. Try different keywords or browse our categories.</p>
-					<div class="suggestion-links">
-						<a href="/research">Research Articles</a>
-						<a href="/advance">Advance Articles</a>
-					</div>
-				</div>
-				
-				<ul id="search-results" class="search-results">
-					<!-- Results will be populated by JavaScript -->
-				</ul>
-			</article>
-		</main>
-		<Footer />
-	</body>
+  <head>
+    <BaseHead
+      title={`Search Results - ${SITE_TITLE}`}
+      description={SITE_DESCRIPTION}
+    />
+  </head>
+  <body>
+    <Header />
+    <main>
+      <article>
+        <h1>Search Results for "<span id="search-query"></span>"</h1>
+        <p class="results-count">
+          <span id="results-count">0</span> results found
+        </p>
+
+        <div id="empty-state" class="empty-state" style="display: none;">
+          <p>
+            No results found. Try different keywords or browse our categories.
+          </p>
+          <div class="suggestion-links">
+            <a href="/research">Research Articles</a>
+            <a href="/advance">Advance Articles</a>
+          </div>
+        </div>
+
+        <ul id="search-results" class="search-results">
+          <!-- Results will be populated by JavaScript -->
+        </ul>
+      </article>
+    </main>
+    <Footer />
+  </body>
 </html>
 
 <script>
@@ -44,40 +51,45 @@ import '../styles/search.css';
     authorName?: string;
   }
 
-  document.addEventListener('DOMContentLoaded', () => {
+  document.addEventListener("DOMContentLoaded", () => {
     // Get results from sessionStorage
-    const query = new URLSearchParams(window.location.search).get('q') || '';
-    const results = sessionStorage.getItem('searchResults');
+    const query = new URLSearchParams(window.location.search).get("q") || "";
+    const results = sessionStorage.getItem("searchResults");
     const searchResults: SearchResult[] = results ? JSON.parse(results) : [];
-    
+
     // Update the DOM
-    const searchQueryEl = document.getElementById('search-query');
-    const resultsCountEl = document.getElementById('results-count');
-    const resultsList = document.getElementById('search-results');
-    const emptyState = document.getElementById('empty-state');
-    
-    if (!searchQueryEl || !resultsCountEl || !resultsList || !emptyState) return;
-    
+    const searchQueryEl = document.getElementById("search-query");
+    const resultsCountEl = document.getElementById("results-count");
+    const resultsList = document.getElementById("search-results");
+    const emptyState = document.getElementById("empty-state");
+
+    if (!searchQueryEl || !resultsCountEl || !resultsList || !emptyState)
+      return;
+
     searchQueryEl.textContent = query;
     resultsCountEl.textContent = searchResults.length.toString();
 
     if (searchResults.length === 0) {
-      resultsList.style.display = 'none';
-      emptyState.style.display = 'block';
+      resultsList.style.display = "none";
+      emptyState.style.display = "block";
     } else {
-      resultsList.innerHTML = searchResults.map((result: SearchResult) => `
+      resultsList.innerHTML = searchResults
+        .map(
+          (result: SearchResult) => `
           <li class="search-result">
             <a href="${result.url}">
               <h2>${result.title}</h2>
-              ${result.description ? `<p class="description">${result.description}</p>` : ''}
+              ${result.description ? `<p class="description">${result.description}</p>` : ""}
               <div class="meta">
-                ${result.date ? `<span class="date">${new Date(result.date).toLocaleDateString()}</span>` : ''}
-                ${result.authorName ? `<span class="author">By ${result.authorName}</span>` : ''}
+                ${result.date ? `<span class="date">${new Date(result.date).toLocaleDateString()}</span>` : ""}
+                ${result.authorName ? `<span class="author">By ${result.authorName}</span>` : ""}
               </div>
             </a>
           </li>
-        `).join('');
-      emptyState.style.display = 'none';
+        `
+        )
+        .join("");
+      emptyState.style.display = "none";
     }
   });
 </script>

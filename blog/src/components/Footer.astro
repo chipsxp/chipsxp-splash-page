@@ -1,30 +1,64 @@
 ---
 const today = new Date();
-import { socialLinks } from '../consts/links';
-import '../styles/footer.css';
+import { socialLinks } from "../consts/links";
 ---
 
 <footer>
-	<p class="ml-36 *:ml-0">&copy; {today.getFullYear()} ChipsXP Research & Advance.</p>
-	<p class="social-links">All rights reserved.</p>
-	<p class="social-links">Made with ❤️ by <a href="https://github.com/ChipsXP" target="_blank">ChipsXP</a></p>
-	<div class="social-links">
-		{socialLinks.map((link) => (
-			<a href={link.href} target="_blank">
-				<span class="sr-only">{link.srText}</span>
-				<svg
-					viewBox="0 0 16 16"
-					aria-hidden="true"
-					width="32"
-					height="32"
-					astro-icon={`social/${link.name.toLowerCase()}`}
-					><path
-						fill="currentColor"
-						d={link.icon}
-					></path>
-					</svg>
-			</a>
-		))}
-	</div>
+  <p class="ml-36 *:ml-0">
+    &copy; {today.getFullYear()} ChipsXP Research & Advance.
+  </p>
+  <p class="social-links">All rights reserved.</p>
+  <p class="social-links">
+    Made with ❤️ by <a href="https://github.com/ChipsXP" target="_blank"
+      >ChipsXP</a
+    >
+  </p>
+  <div class="social-links">
+    {
+      socialLinks.map((link) => (
+        <a href={link.href} target="_blank">
+          <span class="sr-only">{link.srText}</span>
+          <svg
+            viewBox="0 0 16 16"
+            aria-hidden="true"
+            width="32"
+            height="32"
+            astro-icon={`social/${link.name.toLowerCase()}`}
+          >
+            <path fill="currentColor" d={link.icon} />
+          </svg>
+        </a>
+      ))
+    }
+  </div>
 </footer>
 
+<style>
+  footer {
+    padding: 2em 1em 4.8em 1em;
+    background: linear-gradient(var(--gray-gradient)) no-repeat;
+    color: rgb(var(--gray));
+    text-align: center;
+    padding-left: 4em;
+  }
+  .social-links {
+    display: flex;
+    justify-content: center;
+    margin-left: 4em;
+    gap: 1em;
+    margin-top: 1em;
+  }
+  .social-links a {
+    text-decoration: none;
+    color: rgb(var(--gray));
+  }
+  .social-links svg {
+    transition:
+      transform 0.3s ease,
+      filter 0.3s ease;
+  }
+  .social-links a:hover svg {
+    transform: scale(1.2);
+    filter: drop-shadow(0 0 4px rgba(var(--accent), 0.4));
+  }
+</style>

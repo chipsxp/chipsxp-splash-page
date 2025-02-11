@@ -1,70 +1,87 @@
 ---
-import Layout from '../layouts/FrontPage.astro';
-import happyWoman from '../assets/images/happy-woman-with-chipsxp.jpg';
-import bridgeGap from '../assets/images/bridge-the-gap-idea.png';
-import Image from 'astro/components/Image.astro';
+import Layout from "../layouts/FrontPage.astro";
+import happyWoman from "../assets/images/happy-woman-with-chipsxp.jpg";
+import bridgeGap from "../assets/images/bridge-the-gap-idea.png";
+import { Image } from "astro:assets";
 ---
 
 <Layout
-	title="About Jimmy Burns at ChipsXP Research"
-	description="Jimmy Burns at ChipsXP is more than just an AI software and web development company nestled in St. Petersburg, FL"
-	pubDate={new Date('1/25/2025')}
-	heroImage={{
-		src: bridgeGap,
-		alt: 'Bridge the gap concept illustration showing ChipsXP connecting businesses with technology'
-	}}
-	category="research"
-	author={{
-		name: "Jimmy Burns",
-		url: "https://chipsxp.com"
-	}}
+  title="About Jimmy Burns at ChipsXP Research"
+  description="Jimmy Burns at ChipsXP is more than just an AI software and web development company nestled in St. Petersburg, FL"
+  pubDate={new Date("1/25/2025")}
+  heroImage={{
+    src: bridgeGap,
+    alt: "Bridge the gap concept illustration showing ChipsXP connecting businesses with technology",
+  }}
+  category="research"
+  author={{
+    name: "Jimmy Burns",
+    url: "https://chipsxp.com",
+  }}
 >
-	<p>
-		There's been a noticeable change in how small businesses and entrepreneurs are running things. 
-		Many are tapping into local resources to handle most, if not all, of their daily operations. 
-		This often involves outsourcing tasks like web design, e-commerce development, and app creation 
-		to individuals or small firms that offer these services at affordable rates. As a result, small 
-		businesses can concentrate on their core strengths— providing services and selling products —without 
-		having to worry about getting stuck in the weeds of AI software and web design tasks.
-	</p>
+  <p>
+    There's been a noticeable change in how small businesses and entrepreneurs
+    are running things. Many are tapping into local resources to handle most, if
+    not all, of their daily operations. This often involves outsourcing tasks
+    like web design, e-commerce development, and app creation to individuals or
+    small firms that offer these services at affordable rates. As a result,
+    small businesses can concentrate on their core strengths— providing services
+    and selling products —without having to worry about getting stuck in the
+    weeds of AI software and web design tasks.
+  </p>
 
-	<p>
-		Jimmy Burns at ChipsXP Research is more than just an AI software and web development company nestled 
-		in St. Petersburg, FL; it's a heartfelt symbol of innovation and collaboration. Our mission is to 
-		compassionately bridge the gap between IT companies and small business owners, empowering them with 
-		outstanding services in web, e-commerce, and AI app development.
-	</p>
+  <p>
+    Jimmy Burns at ChipsXP Research is more than just an AI software and web
+    development company nestled in St. Petersburg, FL; it's a heartfelt symbol
+    of innovation and collaboration. Our mission is to compassionately bridge
+    the gap between IT companies and small business owners, empowering them with
+    outstanding services in web, e-commerce, and AI app development.
+  </p>
 
-	<p>
-		As a dedicated AI and web developer, I am deeply aware of the unique challenges small businesses encounter 
-		when establishing their online presence. My extensive expertise in various frameworks and frontend 
-		technologies—like HTML, CSS, JavaScript, ReactJS, NextJS, AstrojS, and WordPress—drives me to create dynamic 
-		and captivating websites that perfectly align with your specific needs. Let's transform your vision into 
-		reality together!
-	</p>
+  <p>
+    As a dedicated AI and web developer, I am deeply aware of the unique
+    challenges small businesses encounter when establishing their online
+    presence. My extensive expertise in various frameworks and frontend
+    technologies—like HTML, CSS, JavaScript, ReactJS, NextJS, AstrojS, and
+    WordPress—drives me to create dynamic and captivating websites that
+    perfectly align with your specific needs. Let's transform your vision into
+    reality together!
+  </p>
 
-	<p>
-		Website design is not just about aesthetics; it’s about crafting an experience that resonates with users. I 
-		prioritize user experience and accessibility in all my projects because I believe that everyone should have 
-		equal access to information online. Whether you’re looking to develop an e-commerce platform or a simple 
-		informational site for your small business, my expertise ensures that your vision comes to life seamlessly.
-	</p>
+  <p>
+    Website design is not just about aesthetics; it’s about crafting an
+    experience that resonates with users. I prioritize user experience and
+    accessibility in all my projects because I believe that everyone should have
+    equal access to information online. Whether you’re looking to develop an
+    e-commerce platform or a simple informational site for your small business,
+    my expertise ensures that your vision comes to life seamlessly.
+  </p>
 
-	<p>
-		<Image src={happyWoman} alt="Happy Woman With ChipsXP" />
-	</p>
+  <p>
+    <Image
+      src={happyWoman}
+      width={720}
+      height={400}
+      alt="Happy Woman With ChipsXP"
+      class="content-image"
+    />
+  </p>
 
-	<p>
-		Whether you’re looking to build a stunning website design or launch an e-commerce platform that resonates with 
-		your audience, my expertise can help bring your vision to life. I prioritize user experience and accessibility 
-		in every project because I believe that a well-designed website should be inclusive and easy for everyone to 
-		navigate.
-	</p>
+  <p>
+    Whether you’re looking to build a stunning website design or launch an
+    e-commerce platform that resonates with your audience, my expertise can help
+    bring your vision to life. I prioritize user experience and accessibility in
+    every project because I believe that a well-designed website should be
+    inclusive and easy for everyone to navigate.
+  </p>
 
-	<p>
-		At ChipsXP, we are driven by a team of deeply skilled professionals from some of the world's leading IT firms. 
-		We are wholeheartedly committed to partnering with individuals and small businesses to create exceptional 
-		websites and applications that truly shine. Moreover, we offer free consultations —please feel free to <a href="/contact">reach out 
-		to us for any questions or support you may need!</a>
-	</p>
+  <p>
+    At ChipsXP, we are driven by a team of deeply skilled professionals from
+    some of the world's leading IT firms. We are wholeheartedly committed to
+    partnering with individuals and small businesses to create exceptional
+    websites and applications that truly shine. Moreover, we offer free
+    consultations —please feel free to <a href="/contact"
+      >reach out to us for any questions or support you may need!</a
+    >
+  </p>
 </Layout>
