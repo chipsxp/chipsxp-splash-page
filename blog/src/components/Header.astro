@@ -8,7 +8,11 @@ import SearchBar from "./SearchBar.astro";
 ---
 
 <header class="relative">
-  <div class="absolute inset-0 bg-cover bg-center opacity-20 bkgimage"></div>
+  <Image
+    src={logo}
+    alt="Background"
+    class="absolute inset-0 w-full h-full object-cover opacity-20 object-[center_12%]"
+  />
   <nav class="relative z-10">
     <h2>
       <a href="/">
@@ -69,10 +73,6 @@ import SearchBar from "./SearchBar.astro";
     box-shadow: 0 2px 8px rgba(var(--black), 5%);
     position: relative;
     overflow: hidden;
-  }
-  .bkgimage {
-    background-image: url("../assets/images/chipsxp-research-logo.jpg");
-    background-position: center 12%;
   }
   h2 {
     margin: 0;
