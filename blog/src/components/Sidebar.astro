@@ -2,6 +2,11 @@
 import { getCollection } from "astro:content";
 import type { CollectionEntry } from "astro:content";
 
+import { Image } from "astro:assets";
+import shirtModel from "../assets/images/3d-tshirt-model.jpg";
+import aiOffice from "../assets/images/ai-office-assist.jpg";
+import aiAnalyzer from "../assets/images/ai-helping-user-identify-image.jpg";
+
 type Category = "research" | "advance";
 type CategoryKey = Lowercase<Category>;
 
@@ -59,165 +64,239 @@ type CategoryDisplay = (typeof categories)[number];
   </button>
 
   <aside
-    class="fixed left-0 top-[235px] w-[68vw] h-[calc(100vh-280px)] bg-white/95 border-r border-gray-200 shadow-lg transform md:translate-x-0 -translate-x-full transition-transform duration-300 ease-in-out overflow-hidden lg:w-[33vw] md:w-[39vw] sm:w-[69vw]"
+    class="fixed left-0 top-[235px] w-[88vw] h-[calc(100vh-230px)] bg-white/95 border-r border-gray-200 shadow-lg transform md:translate-x-0 -translate-x-full transition-transform duration-300 ease-in-out overflow-hidden lg:w-[33vw] md:w-[39vw] sm:w-[69vw]"
     id="sidebar"
   >
     <div class="h-full overflow-y-auto">
       <div class="p-4 space-y-6">
         <!-- Banner -->
         <div
-          class="bg-gray-600 text-white rounded-lg h-48 flex items-center justify-center"
+          class="bg-gray-200 text-white rounded-lg h-58 flex flex-col items-center justify-center"
         >
-          Banner Space
-        </div>
-
-        <!-- Categories -->
-        <div class="space-y-4">
-          <h2
-            class="text-2xl font-bold text-gray-800 border-b border-accent/30 pb-2 md:pb-3"
-          >
-            Categories
+          <h2 class="text-2xl font-bold text-gray-800 mb-6 mt-2">
+            ChipsXP Deployed Projects
           </h2>
-          <ul class="space-y-2">
-            {
-              categories.map((category: CategoryDisplay) => {
-                const categoryKey = category.toLowerCase() as CategoryKey;
-                return (
-                  <li class="category-container">
-                    <button class="w-full flex items-center justify-between p-3 text-gray-700 hover:text-accent hover:bg-accent/5 rounded-md transition-colors md:cursor-pointer cursor-default">
-                      <span class="font-medium md:text-xl">{category}</span>
-                      <svg
-                        class="w-4 h-4 transition-transform duration-200 category-arrow md:block hidden"
-                        viewBox="0 0 20 20"
-                        fill="currentColor"
-                      >
-                        <path
-                          fill-rule="evenodd"
-                          d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
-                          clip-rule="evenodd"
-                        />
-                      </svg>
-                    </button>
-                    <div class="mt-2 ml-2 mb-4 pl-3 border-l-2 border-accent/20 space-y-2">
-                      {postsByCategory[categoryKey].map((post) => (
-                        <a
-                          href={
-                            categoryKey === "advance"
-                              ? `/advance/${post.id}`
-                              : `/research/${post.id}`
-                          }
-                          class="block py-2 px-3 md:text-lg text-sm text-gray-600 hover:text-accent hover:bg-accent/5 rounded-md transition-colors truncate"
-                        >
-                          {post.data.title}
-                        </a>
-                      ))}
-                    </div>
-                  </li>
-                );
-              })
-            }
-          </ul>
+          <a
+            href="https://example.com"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <div class="mb-8 flex-col justify-center relative">
+              <Image
+                src={shirtModel}
+                alt="3D T-Shirt Model"
+                class="w-full h-3/4 object-contain"
+              />
+              <div class="absolute inset-0 flex items-center justify-center">
+                <div class="bg-black/40 backdrop-blur-sm px-4 py-2 rounded-lg">
+                  <span
+                    class="text-white font-semibold text-lg tracking-wide text-center drop-shadow-lg"
+                  >
+                    Custom AI 3D T-ShirtS
+                  </span>
+                </div>
+              </div>
+            </div>
+          </a>
+          <a
+            href="https://example.com"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <div class="mb-8 flex-col justify-center relative">
+              <Image
+                src={aiOffice}
+                alt="AI Office Assistant"
+                class="w-full h-3/4 object-contain"
+              />
+              <div class="absolute inset-0 flex items-center justify-center">
+                <div class="bg-black/40 backdrop-blur-sm px-4 py-2 rounded-lg">
+                  <span
+                    class="text-white font-semibold text-lg tracking-wide text-center drop-shadow-lg"
+                  >
+                    AI Office Personal Assistantant
+                  </span>
+                </div>
+              </div>
+            </div>
+          </a>
+          <a
+            href="https://example.com"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <div class="mb-8 flex-col justify-center relative">
+              <Image
+                src={aiAnalyzer}
+                alt="AI Image Analyzer"
+                class="w-full h-3/4 object-contain"
+              />
+              <div class="absolute inset-0 flex items-center justify-center">
+                <div class="bg-black/40 backdrop-blur-sm px-4 py-2 rounded-lg">
+                  <span
+                    class="text-white font-semibold text-lg tracking-wide text-center drop-shadow-lg"
+                  >
+                    Question AI Image Analyzer
+                  </span>
+                </div>
+              </div>
+            </div>
+          </a>
         </div>
       </div>
+
+      <!-- Categories -->
+      <div class="space-y-4">
+        <h2
+          class="text-2xl font-bold text-gray-900 border-b border-accent/30 pb-2 md:pb-3 pl-4"
+        >
+          Categories
+        </h2>
+        <ul class="space-y-2">
+          {
+            categories.map((category: CategoryDisplay) => {
+              const categoryKey = category.toLowerCase() as CategoryKey;
+              return (
+                <li class="category-container">
+                  <button class="w-full flex items-center justify-between p-3 text-gray-700 hover:text-accent hover:bg-accent/5 rounded-md transition-colors md:cursor-pointer cursor-default">
+                    <span class="font-medium md:text-xl">{category}</span>
+                    <svg
+                      class="w-4 h-4 transition-transform duration-200 category-arrow md:block hidden"
+                      viewBox="0 0 20 20"
+                      fill="currentColor"
+                    >
+                      <path
+                        fill-rule="evenodd"
+                        d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                        clip-rule="evenodd"
+                      />
+                    </svg>
+                  </button>
+                  <div class="mt-2 ml-2 mb-4 pl-3 border-l-2 border-accent/20 space-y-2">
+                    {postsByCategory[categoryKey].map((post) => (
+                      <a
+                        href={
+                          categoryKey === "advance"
+                            ? `/advance/${post.id}`
+                            : `/research/${post.id}`
+                        }
+                        class="block py-2 px-3 md:text-lg text-sm text-gray-600 hover:text-accent hover:bg-accent/5 rounded-md transition-colors truncate"
+                      >
+                        {post.data.title}
+                      </a>
+                    ))}
+                  </div>
+                </li>
+              );
+            })
+          }
+        </ul>
+      </div>
     </div>
-  </aside>
-</div>
 
-<script>
-  const sidebar = document.getElementById("sidebar");
-  const overlay = document.getElementById("overlay");
-  const toggleButton = document.getElementById("toggleButton");
-  const categoryContainers = document.querySelectorAll(".category-container");
+    <script>
+      const sidebar = document.getElementById("sidebar");
+      const overlay = document.getElementById("overlay");
+      const toggleButton = document.getElementById("toggleButton");
+      const categoryContainers = document.querySelectorAll(
+        ".category-container"
+      );
 
-  // Toggle sidebar
-  function toggleSidebar() {
-    sidebar?.classList.toggle("-translate-x-full");
-    overlay?.classList.toggle("opacity-0");
-    overlay?.classList.toggle("pointer-events-none");
-  }
+      // Toggle sidebar
+      function toggleSidebar() {
+        sidebar?.classList.toggle("-translate-x-full");
+        overlay?.classList.toggle("opacity-0");
+        overlay?.classList.toggle("pointer-events-none");
+      }
 
-  toggleButton?.addEventListener("click", toggleSidebar);
-  overlay?.addEventListener("click", toggleSidebar);
+      toggleButton?.addEventListener("click", toggleSidebar);
+      overlay?.addEventListener("click", toggleSidebar);
 
-  // Handle category dropdowns on desktop only
-  function setupCategoryDropdowns() {
-    if (window.innerWidth <= 768) return;
+      // Handle category dropdowns on desktop only
+      function setupCategoryDropdowns() {
+        if (window.innerWidth <= 768) return;
 
-    categoryContainers.forEach((container) => {
-      const button = container.querySelector("button");
-      const content = container.querySelector("div");
-      const arrow = container.querySelector(".category-arrow");
+        categoryContainers.forEach((container) => {
+          const button = container.querySelector("button");
+          const content = container.querySelector("div");
+          const arrow = container.querySelector(".category-arrow");
 
-      if (!content) return;
+          if (!content) return;
 
-      // Add hidden class for desktop view
-      content.classList.add("hidden");
+          // Add hidden class for desktop view
+          content.classList.add("hidden");
 
-      button?.addEventListener("click", () => {
-        const isExpanded = !content.classList.contains("hidden");
+          button?.addEventListener("click", () => {
+            const isExpanded = !content.classList.contains("hidden");
 
-        // Close other dropdowns
-        categoryContainers.forEach((otherContainer) => {
-          if (otherContainer !== container) {
-            const otherContent = otherContainer.querySelector("div");
-            const otherArrow = otherContainer.querySelector(".category-arrow");
-            otherContent?.classList.add("hidden");
-            otherArrow?.classList.remove("rotate-180");
+            // Close other dropdowns
+            categoryContainers.forEach((otherContainer) => {
+              if (otherContainer !== container) {
+                const otherContent = otherContainer.querySelector("div");
+                const otherArrow =
+                  otherContainer.querySelector(".category-arrow");
+                otherContent?.classList.add("hidden");
+                otherArrow?.classList.remove("rotate-180");
+              }
+            });
+
+            // Toggle current dropdown
+            content.classList.toggle("hidden");
+            if (arrow) {
+              if (isExpanded) {
+                arrow.classList.remove("rotate-180");
+              } else {
+                arrow.classList.add("rotate-180");
+                // Ensure content is visible
+                const contentRect = content.getBoundingClientRect();
+                const viewportHeight = window.innerHeight;
+
+                if (contentRect.bottom > viewportHeight) {
+                  container.scrollIntoView({
+                    behavior: "smooth",
+                    block: "center",
+                  });
+                }
+              }
+            }
+          });
+        });
+      }
+
+      // Initial setup
+      setupCategoryDropdowns();
+
+      // Update dropdowns on resize
+      window.addEventListener("resize", () => {
+        categoryContainers.forEach((container) => {
+          const content = container.querySelector("div");
+          const arrow = container.querySelector(".category-arrow");
+
+          if (window.innerWidth <= 768) {
+            content?.classList.remove("hidden");
+            arrow?.classList.remove("rotate-180");
+          } else {
+            content?.classList.add("hidden");
           }
         });
-
-        // Toggle current dropdown
-        content.classList.toggle("hidden");
-        if (arrow) {
-          if (isExpanded) {
-            arrow.classList.remove("rotate-180");
-          } else {
-            arrow.classList.add("rotate-180");
-            // Ensure content is visible
-            const contentRect = content.getBoundingClientRect();
-            const viewportHeight = window.innerHeight;
-
-            if (contentRect.bottom > viewportHeight) {
-              container.scrollIntoView({ behavior: "smooth", block: "center" });
-            }
-          }
-        }
+        setupCategoryDropdowns();
       });
-    });
-  }
 
-  // Initial setup
-  setupCategoryDropdowns();
-
-  // Update dropdowns on resize
-  window.addEventListener("resize", () => {
-    categoryContainers.forEach((container) => {
-      const content = container.querySelector("div");
-      const arrow = container.querySelector(".category-arrow");
-
-      if (window.innerWidth <= 768) {
-        content?.classList.remove("hidden");
-        arrow?.classList.remove("rotate-180");
-      } else {
-        content?.classList.add("hidden");
+      // Initialize sidebar state based on screen size
+      function initializeSidebar() {
+        if (window.innerWidth > 768) {
+          sidebar?.classList.remove("-translate-x-full");
+          overlay?.classList.add("opacity-0", "pointer-events-none");
+        } else {
+          sidebar?.classList.add("-translate-x-full");
+        }
       }
-    });
-    setupCategoryDropdowns();
-  });
 
-  // Initialize sidebar state based on screen size
-  function initializeSidebar() {
-    if (window.innerWidth > 768) {
-      sidebar?.classList.remove("-translate-x-full");
-      overlay?.classList.add("opacity-0", "pointer-events-none");
-    } else {
-      sidebar?.classList.add("-translate-x-full");
-    }
-  }
+      // Handle window resize
+      window.addEventListener("resize", initializeSidebar);
 
-  // Handle window resize
-  window.addEventListener("resize", initializeSidebar);
-
-  // Set initial state
-  initializeSidebar();
-</script>
+      // Set initial state
+      initializeSidebar();
+    </script>
+  </aside>
+</div>
