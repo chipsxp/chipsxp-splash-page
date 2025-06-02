@@ -1,11 +1,11 @@
 // Navigation Links
 export const navigationLinks = [
   {
-    name: "Research",
+    name: "Research Analysis",
     href: "/research",
   },
   {
-    name: "Advance",
+    name: "Advance Deployments",
     href: "/advance",
   },
   {
@@ -13,7 +13,7 @@ export const navigationLinks = [
     href: "/about",
   },
   {
-    name: "Contact Devs",
+    name: "Contact ChipsXP",
     href: "/contact",
   },
 ];
