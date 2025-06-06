@@ -1,6 +1,7 @@
 ---
 import { Image } from "astro:assets";
 import { navigationLinks } from "../consts/links";
+import { SITE_TITLE, SITE_DESCRIPTION } from "../consts";
 import chipsxpLogo from "../assets/images/chipsxp-research-logo.jpg";
 import BaseHead from "../components/BaseHead.astro";
 
@@ -13,10 +14,7 @@ import happyWoman from "../assets/images/happy-woman-with-chipsxp.jpg";
 
 <html lang="en">
   <head>
-    <BaseHead
-      title="ChipsXP - Research & Development"
-      description="Explore ChipsXP's innovative research and development in bridging the technology gap. Discover our latest advances in technology and user-focused solutions."
-    />
+    <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
     <style>
       body {
         margin: 0 0 28px 0;
@@ -38,9 +36,13 @@ import happyWoman from "../assets/images/happy-woman-with-chipsxp.jpg";
         padding: 2rem;
       }
 
-      .logo-container {
-        text-align: center;
+      .hero-section {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 6rem;
         margin: 2rem 0;
+        flex-wrap: wrap;
       }
 
       .logo {
@@ -48,6 +50,31 @@ import happyWoman from "../assets/images/happy-woman-with-chipsxp.jpg";
         height: 250px;
         border-radius: 20px;
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        flex-shrink: 0;
+      }
+
+      .description-container {
+        max-width: 568px;
+        background: rgba(51, 45, 45, 0.7);
+        backdrop-filter: blur(10px);
+        border-radius: 15px;
+        padding: 1.5rem;
+        color: white;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+      }
+
+      .description-text {
+        font-size: 1.6rem;
+        line-height: 1.6;
+        margin: 0;
+        text-align: left;
+      }
+
+      .description-title {
+        font-size: 1.4rem;
+        font-weight: bold;
+        margin: 0 0 1rem 0;
+        color: #87ceeb;
       }
 
       .grid {
@@ -99,12 +126,30 @@ import happyWoman from "../assets/images/happy-woman-with-chipsxp.jpg";
         .grid {
           grid-template-columns: 1fr;
         }
+
+        .hero-section {
+          flex-direction: column;
+          text-align: center;
+          gap: 1.5rem;
+        }
+
+        .description-container {
+          max-width: 90%;
+        }
+
+        .description-text {
+          font-size: 1rem;
+        }
+
+        .description-title {
+          font-size: 1.2rem;
+        }
       }
     </style>
   </head>
   <body>
     <div class="container">
-      <div class="logo-container">
+      <div class="hero-section">
         <Image
           src={chipsxpLogo}
           alt="ChipsXP Logo"
@@ -112,6 +157,12 @@ import happyWoman from "../assets/images/happy-woman-with-chipsxp.jpg";
           width={250}
           height={250}
         />
+        <div class="description-container">
+          <h2 class="description-title">{SITE_TITLE}</h2>
+          <p class="description-text">
+            {SITE_DESCRIPTION}
+          </p>
+        </div>
       </div>
 
       <div class="grid">

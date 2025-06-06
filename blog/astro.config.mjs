@@ -5,5 +5,5 @@ import tailwind from "@astrojs/tailwind";
 
 export default defineConfig({
   site: "https://chipsxp.com",
-  integrations: [mdx(), sitemap(), tailwind()],  
+  integrations: [mdx(), sitemap(), tailwind()],
 });
