@@ -19,6 +19,7 @@ pnpm-debug.log*
 .env.local
 config.yaml
 .aider*.*
+.htaccess
 
 
 # macOS-specific files

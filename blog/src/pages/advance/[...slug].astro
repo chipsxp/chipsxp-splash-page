@@ -1,7 +1,6 @@
 ---
-import { type CollectionEntry, getCollection } from "astro:content";
+import { type CollectionEntry, getCollection, render } from "astro:content";
 import BlogPost from "../../layouts/AdvancePost.astro";
-import { render } from "astro:content";
 
 export async function getStaticPaths() {
   const posts = await getCollection("advance");
@@ -13,21 +12,29 @@ export async function getStaticPaths() {
 
 type Props = CollectionEntry<"advance">;
 
+// Get the post from props
 const post = Astro.props;
+
+// Handle case where post might not be available
+if (!post || !post.data) {
+  return Astro.redirect("/404");
+}
+
+// Use the new render function instead of post.render()
 const { Content } = await render(post);
 ---
 
 <BlogPost
   title={post.data.title}
-  description={post.data.description}
+  description={post.data.description || ""}
   pubDate={post.data.pubDate}
-  category={post.data.category}
-  tags={post.data.tags}
+  category={post.data.category || "uncategorized"}
+  tags={post.data.tags || []}
   heroImage={{
-    src: post.data.heroImage.src,
-    alt: post.data.heroImage.alt,
+    src: post.data.heroImage?.src || "",
+    alt: post.data.heroImage?.alt || "",
   }}
-  author={post.data.author}
+  author={post.data.author || "Anonymous"}
   updatedDate={post.data.updatedDate}
 >
   <Content />
