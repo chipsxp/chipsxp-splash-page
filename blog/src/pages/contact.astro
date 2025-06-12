@@ -167,29 +167,40 @@ const author = {
 
         try {
           const formData = new FormData(form);
-          const response = await fetch("/api/send-contact", {
+
+          // Send to Formspree
+          const response = await fetch("https://formspree.io/f/xrbkqqbe ", {
             method: "POST",
             body: formData,
+            headers: {
+              Accept: "application/json",
+            },
           });
 
           const result = await response.json();
 
           // Display result
           if (formStatus) {
-            formStatus.textContent = result.message;
-            formStatus.className = `mt-4 text-center ${result.success ? "text-green-600" : "text-red-600"}`;
+            if (result.ok) {
+              formStatus.textContent =
+                "Thank you for your message! We'll get back to you soon.";
+              formStatus.className =
+                "mt-4 text-center text-green-600 px-4 py-3 rounded-md";
+              form.reset();
+            } else {
+              formStatus.textContent =
+                "There was a problem sending your message. Please try again.";
+              formStatus.className =
+                "mt-4 text-center text-red-600 px-4 py-3 rounded-md";
+            }
             formStatus.classList.remove("hidden");
-          }
-
-          // Reset form if successful
-          if (result.success) {
-            form.reset();
           }
         } catch (error) {
           console.error("Error:", error);
           if (formStatus) {
             formStatus.textContent = "An error occurred. Please try again.";
-            formStatus.className = "mt-4 text-center text-red-600";
+            formStatus.className =
+              "mt-4 text-center text-red-600 px-4 py-3 rounded-md";
             formStatus.classList.remove("hidden");
           }
         } finally {
