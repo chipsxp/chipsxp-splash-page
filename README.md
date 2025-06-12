@@ -1,4 +1,4 @@
-# ChipsXP Research and Development ( Renamed to 'Adavance' as the Category )
+# ChipsXP Research and Development ( Renamed to 'Advance' as the Category )
 
 ## Overview
 
