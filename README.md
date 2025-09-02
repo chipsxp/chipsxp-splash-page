@@ -37,18 +37,21 @@ The blog uses Astro's Content Collections for type-safe content management:
    - Node.js 18+ (recommended)
    - Git
 
-2. **Clone the Repository**: 
+2. **Clone the Repository**:
+
    ```bash
    git clone <repository-url>
    cd blog
    ```
 
-3. **Install Dependencies**: 
+3. **Install Dependencies**:
+
    ```bash
    npm install
    ```
 
 4. **Development Commands**:
+
    ```bash
    npm run dev        # Start dev server
    npm run build      # Build for production
