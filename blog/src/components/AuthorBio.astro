@@ -1,0 +1,224 @@
+---
+import { Image } from "astro:assets";
+import { socialLinks } from "../consts/links";
+
+// Try to import the profile image, with fallback
+let profileImage;
+try {
+  profileImage = await import("../assets/images/jimmy-burns-profile.jpg");
+} catch {
+  // Fallback to a placeholder or existing image
+  profileImage = await import("../assets/images/chipsxp-research-logo.jpg");
+}
+
+interface Props {
+  category?: "research" | "advance";
+}
+
+const { category = "research" } = Astro.props;
+
+// Category-specific content
+const categoryContent = {
+  research: {
+    title: "Research & Analysis",
+    focus: "AI Research, Technical Analysis, Framework Studies",
+  },
+  advance: {
+    title: "Advance & Deployment",
+    focus: "Web Development, AI Applications, E-commerce",
+  },
+};
+
+const currentCategory = categoryContent[category];
+---
+
+<div
+  id="authorBio"
+  class="fixed left-0 top-0 w-[88vw] h-[72px] md:h-[235px] bg-gradient-to-br from-blue-50/95 to-indigo-100/95 backdrop-blur-sm border-r border-gray-200 shadow-lg transform md:translate-x-0 -translate-x-full transition-all duration-500 ease-in-out lg:w-[33vw] md:w-[39vw] sm:w-[69vw] z-[99] opacity-0"
+>
+  <!-- Desktop Layout -->
+  <div class="hidden md:flex h-full items-center p-6 space-x-4">
+    <!-- Profile Image -->
+    <div class="flex-shrink-0">
+      <div
+        class="w-16 h-16 md:w-20 md:h-20 rounded-full overflow-hidden ring-2 ring-white shadow-lg"
+      >
+        <Image
+          src={profileImage.default}
+          alt="Jimmy Burns Profile"
+          width={80}
+          height={80}
+          class="w-full h-full object-cover"
+        />
+      </div>
+    </div>
+
+    <!-- Bio Content -->
+    <div class="flex-1 min-w-0 space-y-3">
+      <!-- Name and Title -->
+      <div>
+        <h3 class="text-lg font-bold text-gray-800 leading-tight">
+          Jimmy Burns
+        </h3>
+        <p class="text-sm text-gray-600 font-medium">AI & Web Developer</p>
+        <p class="text-xs text-gray-500">
+          ChipsXP Research • St. Petersburg, FL
+        </p>
+      </div>
+
+      <!-- Category Focus -->
+      <div class="bg-white/60 rounded-lg p-2">
+        <p class="text-xs font-semibold text-gray-700 mb-1">
+          {currentCategory.title}
+        </p>
+        <p class="text-xs text-gray-600 leading-tight">
+          {currentCategory.focus}
+        </p>
+      </div>
+
+      <!-- Brief Bio -->
+      <div class="hidden md:block">
+        <p class="text-xs text-gray-600 leading-relaxed">
+          "Bridging the gap between IT companies and small business owners ."
+        </p>
+      </div>
+
+      <!-- Social Links and CTA -->
+      <div class="flex items-center justify-between mb-2">
+        <!-- Social Icons -->
+        <div class="flex space-x-2">
+          {
+            socialLinks.slice(0, 4).map((social) => (
+              <a
+                href={social.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="w-6 h-6 flex items-center justify-center bg-white/80 hover:bg-white rounded-full transition-colors duration-200 shadow-sm hover:shadow-md group"
+                title={social.srText}
+              >
+                <svg
+                  class="w-3 h-3 text-gray-600 group-hover:text-blue-600 transition-colors"
+                  fill="currentColor"
+                  viewBox="0 0 16 16"
+                >
+                  <path d={social.icon} />
+                </svg>
+              </a>
+            ))
+          }
+        </div>
+
+        <!-- CTA Button -->
+        <a
+          href="/contact"
+          class="inline-flex items-center space-x-1 px-3 py-1.5 text-xs font-medium text-white bg-gradient-to-r from-blue-500 to-indigo-600 hover:from-blue-600 hover:to-indigo-700 rounded-full transition-all duration-200 shadow-sm hover:shadow-md transform hover:scale-105"
+        >
+          <svg
+            class="w-3 h-3"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 002 2z"
+            ></path>
+          </svg>
+          <span>Collaborate</span>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Mobile Layout -->
+  <div class="md:hidden h-full flex items-center justify-between px-4 py-2">
+    <!-- Name and Title -->
+    <div class="flex-shrink-0">
+      <h3 class="text-sm font-bold text-gray-800 leading-tight">Jimmy Burns</h3>
+      <p class="text-xs text-gray-600 font-medium">AI & Web Developer</p>
+    </div>
+
+    <!-- Social Links -->
+    <div class="flex space-x-1.5">
+      {
+        socialLinks.slice(0, 4).map((social) => (
+          <a
+            href={social.href}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="w-5 h-5 flex items-center justify-center bg-white/80 hover:bg-white rounded-full transition-colors duration-200 shadow-sm hover:shadow-md group"
+            title={social.srText}
+          >
+            <svg
+              class="w-2.5 h-2.5 text-gray-600 group-hover:text-blue-600 transition-colors"
+              fill="currentColor"
+              viewBox="0 0 16 16"
+            >
+              <path d={social.icon} />
+            </svg>
+          </a>
+        ))
+      }
+    </div>
+
+    <!-- CTA Button -->
+    <a
+      href="/contact"
+      class="inline-flex items-center space-x-1 px-2 py-1 text-xs font-medium text-white bg-gradient-to-r from-blue-500 to-indigo-600 hover:from-blue-600 hover:to-indigo-700 rounded-full transition-all duration-200 shadow-sm hover:shadow-md transform hover:scale-105"
+    >
+      <svg
+        class="w-2.5 h-2.5"
+        fill="none"
+        stroke="currentColor"
+        viewBox="0 0 24 24"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 002 2z"
+        ></path>
+      </svg>
+      <span>Contact</span>
+    </a>
+  </div>
+
+  <script>
+    // Author Bio scroll functionality
+    const authorBio = document.getElementById("authorBio");
+
+    if (authorBio) {
+      let isBioVisible = false;
+      const headerHeight = 235; // Height after which to show author bio
+
+      // Handle scroll events
+      function handleScroll() {
+        if (!authorBio) return;
+
+        const scrollY = window.scrollY;
+
+        // Show/hide author bio based on scroll position
+        if (scrollY > headerHeight && !isBioVisible) {
+          authorBio.classList.remove("-translate-x-full", "opacity-0");
+          authorBio.classList.add("translate-x-0", "opacity-100");
+          isBioVisible = true;
+        } else if (scrollY <= headerHeight && isBioVisible) {
+          authorBio.classList.add("-translate-x-full", "opacity-0");
+          authorBio.classList.remove("translate-x-0", "opacity-100");
+          isBioVisible = false;
+        }
+      }
+
+      // Throttled scroll event listener for better performance
+      let scrollTimeout: ReturnType<typeof setTimeout>;
+      window.addEventListener("scroll", () => {
+        if (scrollTimeout) {
+          clearTimeout(scrollTimeout);
+        }
+        scrollTimeout = setTimeout(handleScroll, 10);
+      });
+    }
+  </script>
+</div>

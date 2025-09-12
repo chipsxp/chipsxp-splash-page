@@ -3,6 +3,7 @@ import BaseHead from "../../components/BaseHead.astro";
 import Header from "../../components/Header.astro";
 import Footer from "../../components/Footer.astro";
 import Sidebar from "../../components/Sidebar.astro";
+import AuthorBio from "../../components/AuthorBio.astro";
 import { SITE_TITLE, SITE_DESCRIPTION } from "../../consts";
 import { getCollection } from "astro:content";
 import { Image } from "astro:assets";
@@ -30,8 +31,8 @@ const sortedPosts = posts.sort(
       }
       main {
         flex: 1;
-        margin-left: 30vw;
-        padding: 3em 2em;
+        margin-left: 34vw;
+        padding: 1em 2em;
         width: 100%;
       }
       section {
@@ -123,13 +124,14 @@ const sortedPosts = posts.sort(
 
       @media (min-width: 768px) and (max-width: 1024px) {
         main {
-          margin-left: 280px;
+          margin-left: 34vw;
         }
       }
     </style>
   </head>
   <body>
     <Header />
+    <AuthorBio category="advance" />
     <div class="layout-container">
       <Sidebar />
       <main>

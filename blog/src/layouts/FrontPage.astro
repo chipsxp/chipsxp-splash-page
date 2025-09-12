@@ -6,6 +6,7 @@ import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 import FormattedDate from "../components/FormattedDate.astro";
 import Sidebar from "../components/Sidebar.astro";
+import AuthorBio from "../components/AuthorBio.astro";
 import type { CollectionKey } from "astro:content";
 
 type Props = CollectionEntry<CollectionKey>["data"];
@@ -231,7 +232,7 @@ const categoryDisplay = category
         }
         .hero-image {
           padding: 0;
-          margin: 0 auto;
+
           margin: 0 0 0 2rem;
         }
         .hero-image img {
@@ -285,6 +286,7 @@ const categoryDisplay = category
 
   <body>
     <Header />
+    <AuthorBio category={category || "research"} />
     <div class="layout-container">
       <Sidebar />
       <main>
