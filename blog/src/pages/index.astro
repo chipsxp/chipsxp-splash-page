@@ -17,7 +17,7 @@ import happyWoman from "../assets/images/happy-woman-with-chipsxp.jpg";
     <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
     <style>
       body {
-        margin: 0 0 28px 0;
+        margin: 0;
         padding: 0;
         min-height: 100vh;
         font-family:
@@ -28,177 +28,318 @@ import happyWoman from "../assets/images/happy-woman-with-chipsxp.jpg";
           Roboto,
           sans-serif;
         background: linear-gradient(135deg, #ff69b4, #87ceeb);
+        overflow-x: hidden;
+        width: 100%;
       }
 
-      .container {
-        max-width: 1200px;
+      .layout-container {
+        display: grid;
+        grid-template-columns: 1fr 2fr;
+        gap: 2rem;
+        max-width: 1400px;
         margin: 0 auto;
         padding: 2rem;
+        box-sizing: border-box;
+      }
+
+      .sidebar {
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 15px;
+        padding: 1.5rem;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      }
+
+      .sidebar-title {
+        color: white;
+        font-size: 1.5rem;
+        margin: 0 0 1.5rem 0;
+        text-align: center;
+        border-bottom: 2px solid #ff69b4;
+        padding-bottom: 0.5rem;
       }
 
       .hero-section {
         display: flex;
         align-items: center;
         justify-content: center;
-        gap: 6rem;
-        margin: 2rem 0;
+        gap: 2rem;
+        margin: 1rem 0;
         flex-wrap: wrap;
       }
 
       .logo {
-        width: 250px;
-        height: 250px;
-        border-radius: 20px;
+        width: 150px;
+        height: 150px;
+        border-radius: 15px;
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-        flex-shrink: 0;
       }
 
       .description-container {
-        max-width: 568px;
         background: rgba(51, 45, 45, 0.7);
-        backdrop-filter: blur(10px);
-        border-radius: 15px;
-        padding: 1.5rem;
+        border-radius: 10px;
+        padding: 1rem;
         color: white;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-      }
-
-      .description-text {
-        font-size: 1.6rem;
-        line-height: 1.6;
-        margin: 0;
-        text-align: left;
       }
 
       .description-title {
-        font-size: 1.4rem;
-        font-weight: bold;
-        margin: 0 0 1rem 0;
-        color: #87ceeb;
+        color: #99aabb;
+        margin-bottom: 0.5rem;
       }
 
-      .grid {
+      .sidebar-grid {
         display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        gap: 2.5rem;
-        margin-top: 2rem;
+        grid-template-columns: 1fr;
+        gap: 1rem;
+        margin-top: 1rem;
       }
 
-      .card {
+      .sidebar-card {
         position: relative;
-        border-radius: 15px;
+        border-radius: 10px;
         overflow: hidden;
-        transition: transform 0.3s ease;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
       }
 
-      .card:hover {
-        transform: translateY(-5px);
-        border: #ff69b4;
-        border-style: solid;
-        border-width: 2px;
-      }
-
-      .card img {
+      .sidebar-card img {
         width: 100%;
-        height: 325px;
+        height: 270px;
         object-fit: cover;
+        max-width: 100%;
       }
 
-      .card-overlay {
+      .sidebar-card-overlay {
         position: absolute;
         bottom: 0;
         left: 0;
         right: 0;
-        background: rgba(221, 235, 243, 0.814);
-        padding: 1rem;
-        color: white;
+        width: 100%;
+        background: rgba(221, 235, 243, 0.8);
+        padding: 0.5rem;
+        color: #333;
         text-align: center;
       }
 
-      .card-title {
-        margin: 0;
-        font-size: 1.5rem;
+      .main-content {
+        background: rgba(255, 255, 255, 0.95);
+        border-radius: 15px;
+        padding: 2rem;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        min-height: 100vh;
+      }
+
+      .main-title {
+        color: #333;
+        font-size: 2rem;
+        margin: 0 0 2rem 0;
+        text-align: center;
+        border-bottom: 3px solid #ff69b4;
+        padding-bottom: 1rem;
+      }
+
+      .post-card {
+        background: white;
+        border-radius: 10px;
+        padding: 1.5rem;
+        margin-bottom: 1.5rem;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      }
+
+      .post-title {
+        color: #333;
+        font-size: 1.3rem;
+        margin: 0 0 0.5rem 0;
+      }
+
+      .post-meta {
+        color: #666;
+        font-size: 0.9rem;
+        margin: 0 0 1rem 0;
+      }
+
+      .post-excerpt {
+        color: #444;
+        line-height: 1.5;
+        margin: 0 0 1rem 0;
+      }
+
+      .read-more {
+        background: #ff69b4;
+        color: white;
+        border: none;
+        padding: 0.5rem 1rem;
+        border-radius: 5px;
+        cursor: pointer;
         font-weight: bold;
       }
 
       @media (max-width: 768px) {
-        .grid {
+        .layout-container {
           grid-template-columns: 1fr;
+          padding: 1rem;
+          margin: 0 auto;
+          width: 100%;
+          max-width: 100%;
         }
-
+        
         .hero-section {
           flex-direction: column;
           text-align: center;
-          gap: 1.5rem;
         }
-
-        .description-container {
-          max-width: 90%;
+        
+        .logo {
+          width: 120px;
+          height: 120px;
         }
-
-        .description-text {
-          font-size: 1rem;
+        
+        .sidebar-card img {
+          height: 200px;
         }
+        
+        .main-content {
+          padding: 1.5rem;
+        }
+        
+        .main-title {
+          font-size: 1.5rem;
+        }
+      }
 
-        .description-title {
-          font-size: 1.2rem;
+      @media (max-width: 538px) {
+        .layout-container {
+          grid-template-columns: 1fr;
+          padding: 0.5rem;
+          margin: 0 auto;
+          width: 100%;
+          max-width: 100%;
+        }
+        
+        .sidebar {
+          padding: 1rem;
+        }
+        
+        .logo {
+          width: 100px;
+          height: 100px;
+        }
+        
+        .sidebar-card img {
+          height: 150px;
+        }
+        
+        .main-content {
+          padding: 1rem;
+        }
+        
+        .post-card {
+          padding: 1rem;
         }
       }
     </style>
   </head>
   <body>
-    <div class="container">
-      <div class="hero-section">
-        <Image
-          src={chipsxpLogo}
-          alt="ChipsXP Logo"
-          class="logo"
-          width={250}
-          height={250}
-        />
-        <div class="description-container">
-          <h2 class="description-title">{SITE_TITLE}</h2>
-          <p class="description-text">
-            {SITE_DESCRIPTION}
-          </p>
-        </div>
-      </div>
+    <div class="layout-container">
+      <!-- Sidebar with original content -->
+      <aside class="sidebar">
+        <h2 class="sidebar-title">ChipsXP Navigation</h2>
 
-      <div class="grid">
-        <a href={navigationLinks[0].href} class="card">
-          <Image src={bridgeGap} alt="Research" width={600} height={375} />
-          <div class="card-overlay">
-            <h2 class="card-title">{navigationLinks[0].name}</h2>
-          </div>
-        </a>
-
-        <a href={navigationLinks[1].href} class="card">
-          <Image src={technoField} alt="Advance" width={600} height={375} />
-          <div class="card-overlay">
-            <h2 class="card-title">{navigationLinks[1].name}</h2>
-          </div>
-        </a>
-
-        <a href={navigationLinks[2].href} class="card">
+        <div class="hero-section">
           <Image
-            src={userSupport}
-            alt="About ChipsXP"
-            width={600}
-            height={350}
+            src={chipsxpLogo}
+            alt="ChipsXP Logo"
+            class="logo"
+            width={150}
+            height={150}
           />
-          <div class="card-overlay">
-            <h2 class="card-title">{navigationLinks[2].name}</h2>
+          <div class="description-container">
+            <h2 class="description-title">{SITE_TITLE}</h2>
+            <p class="description-text">
+              {SITE_DESCRIPTION}
+            </p>
           </div>
-        </a>
+        </div>
 
-        <a href={navigationLinks[3].href} class="card">
-          <Image src={happyWoman} alt="Contact Devs" width={600} height={375} />
-          <div class="card-overlay">
-            <h2 class="card-title">{navigationLinks[3].name}</h2>
+        <div class="sidebar-grid">
+          <a href={navigationLinks[0].href} class="sidebar-card">
+            <Image src={bridgeGap} alt="Research" width={300} height={270} />
+            <div class="sidebar-card-overlay">
+              <h3 class="sidebar-card-title">{navigationLinks[0].name}</h3>
+            </div>
+          </a>
+
+          <a href={navigationLinks[1].href} class="sidebar-card">
+            <Image src={technoField} alt="Advance" width={300} height={270} />
+            <div class="sidebar-card-overlay">
+              <h3 class="sidebar-card-title">{navigationLinks[1].name}</h3>
+            </div>
+          </a>
+
+          <a href={navigationLinks[2].href} class="sidebar-card">
+            <Image
+              src={userSupport}
+              alt="About ChipsXP"
+              width={300}
+              height={270}
+            />
+            <div class="sidebar-card-overlay">
+              <h3 class="sidebar-card-title">{navigationLinks[2].name}</h3>
+            </div>
+          </a>
+
+          <a href={navigationLinks[3].href} class="sidebar-card">
+            <Image
+              src={happyWoman}
+              alt="Contact Devs"
+              width={300}
+              height={270}
+            />
+            <div class="sidebar-card-overlay">
+              <h3 class="sidebar-card-title">{navigationLinks[3].name}</h3>
+            </div>
+          </a>
+        </div>
+      </aside>
+
+      <!-- Main content area for Substack posts -->
+      <main class="main-content">
+        <h1 class="main-title">Latest from Substack</h1>
+
+        <div class="posts-container">
+          <!-- Research Category -->
+          <div class="category-section">
+            <h2 class="category-title">Research</h2>
+            <div class="posts">
+              <div class="post-card">
+                <h3 class="post-title">Latest AI Research Breakthroughs</h3>
+                <div class="post-meta">
+                  <span>January 15, 2024</span> • <span
+                    >By ChipsXP Research Team</span
+                  >
+                </div>
+                <p class="post-excerpt">
+                  Discover the latest breakthroughs in artificial intelligence
+                  research and how they're shaping the future of technology. Our
+                  team has been working on innovative approaches to machine
+                  learning and neural networks...
+                </p>
+                <button class="read-more">Read More</button>
+              </div>
+
+              <div class="post-card">
+                <h3 class="post-title">Data Science Methodologies</h3>
+                <div class="post-meta">
+                  <span>January 12, 2024</span> • <span
+                    >By Data Analytics Team</span
+                  >
+                </div>
+                <p class="post-excerpt">
+                  Explore cutting-edge data science techniques and methodologies
+                  that are revolutionizing how
+                </p>
+              </div>
+            </div>
           </div>
-        </a>
-      </div>
+        </div>
+      </main>
     </div>
   </body>
 </html>

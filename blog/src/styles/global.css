@@ -47,15 +47,23 @@ body {
 	*/
   font-size: 16px;
   line-height: 1.2;
+  overflow-x: hidden; /* Prevent horizontal scrolling */
 }
 
 /* Custom main container styles for body content */
 main {
-  width: 768px;
-  max-width: calc(100% - 2em);
+  width: 100%;
+  max-width: 768px;
   margin: auto;
   /* top and bottom | left and right */
   padding: 3em 1em;
+  box-sizing: border-box;
+}
+
+@media (max-width: 768px) {
+  main {
+    padding: 1.5em 0.75em;
+  }
 }
 
 /* Custom header title styles for articles content*/
